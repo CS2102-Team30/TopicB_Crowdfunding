@@ -1,2 +1,2 @@
-# TopicB_Crowdfunding
-CS2102 Project...
+# Team 30 Topic B Crowdfunding
+Welcome to our project!
