@@ -1,46 +1,64 @@
 <!DOCTYPE html>  
 <head>
-  <title>UPDATE PostgreSQL data with PHP</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <style>li {list-style: none;}</style>
+    <title>UPDATE PostgreSQL data with PHP</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>li {list-style: none;}</style>
 </head>
+
 <body>
-  <h2>Supply bookid and enter</h2>
-  <ul>
-    <form name="display" action="index.php" method="POST" >
-      <li>Book ID:</li>
-      <li><input type="text" name="bookid" /></li>
-      <li><input type="submit" name="submit" /></li>
-    </form>
-  </ul>
-  <?php
-  	// Connect to the database. Please change the password in the following line accordingly
-    $db     = pg_connect("host=localhost port=5432 dbname=Project1 user=postgres password=test");	
-    $result = pg_query($db, "SELECT * FROM book where book_id = '$_POST[bookid]'");		// Query template
-    $row    = pg_fetch_assoc($result);		// To store the result row
-    if (isset($_POST['submit'])) {
-        echo "<ul><form name='update' action='index.php' method='POST' >  
-    	<li>Book ID:</li>  
-    	<li><input type='text' name='bookid_updated' value='$row[book_id]' /></li>  
-    	<li>Book Name:</li>  
-    	<li><input type='text' name='book_name_updated' value='$row[name]' /></li>  
-    	<li>Price (USD):</li><li><input type='text' name='price_updated' value='$row[price]' /></li>  
-    	<li>Date of publication:</li>  
-    	<li><input type='text' name='dop_updated' value='$row[date_of_publication]' /></li>  
-    	<li><input type='submit' name='new' /></li>  
-    	</form>  
-    	</ul>";
-    }
-    if (isset($_POST['new'])) {	// Submit the update SQL command
-        $result = pg_query($db, "UPDATE book SET book_id = '$_POST[bookid_updated]',  
-    name = '$_POST[book_name_updated]',price = '$_POST[price_updated]',  
-    date_of_publication = '$_POST[dop_updated]'");
-        if (!$result) {
-            echo "Update failed!!";
+    <h2>Login</h2>
+    <ul>
+        <form name="display" action="index.php" method="POST" >
+            <li><input type="text" name="userid" placeholder="userid" required/></li>
+            <li><input type="text" name="password" placeholder="password" required/></li>
+            <li><input type="submit" name="login_submit" /></li>
+        </form>
+    </ul>
+    <h2>Sign up for new account</h2>
+    <ul>
+        <form name="display" action="index.php" method="POST" >
+            <li><input type="text" name="userid2" placeholder="userid" required/></li>
+            <li><input type="text" name="password2" placeholder="password" required/></li>
+            <li><input type="submit" name="signup_submit" /></li>
+        </form>
+    </ul>
+
+    <?php
+        // Connect to the database. Please change the password in the following line accordingly
+        $db     = pg_connect("host=localhost port=5432 dbname=project1 user=postgres password=test");	
+        if(!$db) {
+            echo "Error : Unable to open database\n";
         } else {
-            echo "Update successful!";
+            echo "Opened database successfully\n";
         }
-    }
+
+        if (isset($_POST['login_submit'])) {
+            $query = "SELECT * FROM account WHERE userid='$_POST[userid]'";
+            $result = pg_query($db, $query);
+            if (!$result) {
+                echo "Login failed!";
+            }
+            else {
+                $row = pg_fetch_assoc($result);
+                if ($_POST[password] != $row[password]) {
+                    echo "Login failed!";
+                }
+                else {
+                    echo "Login succeeded!";
+                }
+            }
+        }
+
+        if (isset($_POST['signup_submit'])) {	
+            $query = "INSERT INTO account VALUES ('$_POST[userid2]', '$_POST[password2]')";
+            $result = pg_query($db, $query);
+            if (!$result) {
+                echo "Update failed!";
+            }
+            else {
+                echo "Update successful!";
+            }
+        }
     ?>  
 </body>
 </html>
