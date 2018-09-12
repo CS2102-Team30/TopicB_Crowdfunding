@@ -10,7 +10,7 @@
     <ul>
         <form name="display" action="index.php" method="POST" >
             <li><input type="text" name="userid" placeholder="userid" required/></li>
-            <li><input type="text" name="password" placeholder="password" required/></li>
+            <li><input type="password" name="password" placeholder="password" required/></li>
             <li><input type="submit" name="login_submit" /></li>
         </form>
     </ul>
@@ -18,14 +18,16 @@
     <ul>
         <form name="display" action="index.php" method="POST" >
             <li><input type="text" name="userid2" placeholder="userid" required/></li>
-            <li><input type="text" name="password2" placeholder="password" required/></li>
+            <li><input type="password" name="password2" placeholder="password" required/></li>
             <li><input type="submit" name="signup_submit" /></li>
         </form>
     </ul>
 
     <?php
-        // Connect to the database. Please change the password in the following line accordingly
-        $db     = pg_connect("host=localhost port=5432 dbname=project1 user=postgres password=test");	
+        session_start();
+
+        // Connect to the database
+        $db = pg_connect("host=localhost port=5432 dbname=project1 user=postgres password=test");	
         if(!$db) {
             echo "Error : Unable to open database\n";
         } else {
@@ -44,7 +46,8 @@
                     echo "Login failed!";
                 }
                 else {
-                    echo "Login succeeded!";
+                    $_SESSION[userid] = $row[userid];
+                    header("Location: mainpage.php");
                 }
             }
         }
@@ -53,10 +56,10 @@
             $query = "INSERT INTO account VALUES ('$_POST[userid2]', '$_POST[password2]')";
             $result = pg_query($db, $query);
             if (!$result) {
-                echo "Update failed!";
+                echo "Signup failed!";
             }
             else {
-                echo "Update successful!";
+                echo "Signup successful!";
             }
         }
     ?>  
