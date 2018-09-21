@@ -34,14 +34,13 @@
                         <input name="password" type="password" class="form-control" placeholder="Password" required/>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-1">
-                        <input type="submit" name="login_submit" value="Log In"/>
-                    </div>
-                    <div class="col-sm-10 text-center">
-                        Not registered? <a href="register.php">Register here.</a>
-                    </div>
+                <div class="form-group text-center">
+                    <input type="submit" name="login_submit" value="Log In"/>
                 </div>
+                <div class="text-center">
+                    Not registered? <a href="register.php">Register here.</a>
+                </div>
+                
             </form>
             <br><br><br>
 

@@ -34,10 +34,8 @@
                         <input name="reg_password" type="password" class="form-control" placeholder="Password" required/>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-1">
-                        <input type="submit" name="signup_submit" value="Sign Up!"/>
-                    </div>
+                <div class="form-group text-center">
+                    <input type="submit" name="signup_submit" value="Sign Up!"/>
                 </div>
             </form>
             <br><br>
