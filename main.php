@@ -27,20 +27,7 @@
                 include_once('./php_funcs/connectDB.php');	
 
                 if (isset($_POST[logout_submit])) {
-                    session_unset();
-                    session_destroy();
-                    header("Location: index.php");
-                }
-                
-                if (isset($_POST[newpassword_submit])) {
-                    $query = "UPDATE account SET password = '$_POST[password]' WHERE userid = '$_SESSION[userid]'";
-                    $result = pg_query($db, $query);
-                    if (!$result) {
-                        echo "Failed to change password.";
-                    }
-                    else {
-                        echo "Password updated!";
-                    }
+                    include('./php_funcs/logOut.php');
                 }
             ?>
         </div>

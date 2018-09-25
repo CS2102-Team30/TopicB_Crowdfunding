@@ -23,9 +23,14 @@
         <div class="container">
             <h1>Add your project here </h1>
         </div>
+        
         <?php
             //log in to db
             include_once('./php_funcs/connectDB.php');
+
+            if (isset($_POST[logout_submit])) {
+                include('./php_funcs/logOut.php');
+            }
         ?>
         
     </body>

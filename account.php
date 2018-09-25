@@ -46,9 +46,7 @@
                     include_once('./php_funcs/connectDB.php');
 
                     if (isset($_POST[logout_submit])) {
-                        session_unset();
-                        session_destroy();
-                        header("Location: index.php");
+                        include('./php_funcs/logOut.php');
                     }
                     
                     if (isset($_POST[changepwd_submit])) {
