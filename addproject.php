@@ -16,7 +16,7 @@
         <div class="container">
             <div class="text-center">
                 <br>
-                <h1>Add your project here for others users to fund </h1>
+                <h1>Have an idea? <br>Let's get started right here. </h1>
                 <br>
             </div>
 
