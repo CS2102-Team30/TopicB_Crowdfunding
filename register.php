@@ -16,7 +16,7 @@
         
         <div class="container">
             <div class="text-center">
-                <h1>Register here</h1>
+                <h2>Register here</h2>
                 <br>
             </div>
             
