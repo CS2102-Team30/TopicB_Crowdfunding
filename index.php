@@ -28,7 +28,7 @@
         </div>       
         
         <div class="container">
-            <div class="text-center" style="margin: 10px">
+            <div class="text-center">
                 <h1>Please log in to continue</h1>
             </div>
             
