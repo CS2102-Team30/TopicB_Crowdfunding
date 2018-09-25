@@ -17,6 +17,7 @@
         <div class="container">
             <div class="text-center">
                 <h1>Please log in to continue</h1>
+                <br>
             </div>
             
             <form action="index.php" method="POST">

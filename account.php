@@ -15,6 +15,7 @@
         
         <div class="container">
             <div class="text-center">
+                <br>
                 <h1>Account Settings</h1>
                 <br>
             </div>

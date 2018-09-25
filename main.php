@@ -14,7 +14,9 @@
         <?php include("./template/nav.php"); ?>        
         
         <div class="container">
+            <br>
             <h1>Welcome to the Home Page!</h1>
+            <br>
             <?php
                 //log in to db
                 include_once('./php_funcs/connectDB.php');	
