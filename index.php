@@ -51,7 +51,7 @@
                     include_once('./php_funcs/connectDB.php');
 
                     if (isset($_POST['login_submit'])) {
-                        $query = "SELECT * FROM account WHERE userid='$_POST[userid]'";
+                        $query = "SELECT * FROM users WHERE userid='$_POST[userid]'";
                         $result = pg_query($db, $query);
                         if (!$result) {
                             echo "Login failed!";
