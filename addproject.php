@@ -14,6 +14,11 @@
     <body>
         <?php
             session_start();
+            
+            // to make sure user can only get here if he is logged in
+            if (!isset($_SESSION[userid])) {
+                header("Location: index.php");
+            }
         ?>
         
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,7 +49,7 @@
             </div>
         </nav>
         
-        <div class="container" id="mainpage">
+        <div class="container">
             <h1>Add your project here </h1>
         </div>
     </body>

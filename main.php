@@ -14,6 +14,11 @@
     <body>
         <?php
             session_start();
+            
+            // to make sure user can only get here if he is logged in
+            if (!isset($_SESSION[userid])) {
+                header("Location: index.php");
+            }
         ?>
         
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,32 +49,27 @@
             </div>
         </nav>
         
-        <div class="container" id="mainpage">
+        <div class="container">
             <h1>Welcome to the Home Page!</h1>
             <?php
                 // connect to the database
                 $db = pg_connect("host=localhost port=5432 dbname=project1 user=postgres password=test");	
 
-                if (isset($_SESSION[userid])) {  // to make sure user can only get here if he is logged in
-                    if (isset($_POST[logout_submit])) {
-                        session_unset();
-                        session_destroy();
-                        header("Location: index.php");
-                    }
-                    
-                    if (isset($_POST[newpassword_submit])) {
-                        $query = "UPDATE account SET password = '$_POST[password]' WHERE userid = '$_SESSION[userid]'";
-                        $result = pg_query($db, $query);
-                        if (!$result) {
-                            echo "Failed to change password.";
-                        }
-                        else {
-                            echo "Password updated!";
-                        }
-                    }
-                }
-                else {
+                if (isset($_POST[logout_submit])) {
+                    session_unset();
+                    session_destroy();
                     header("Location: index.php");
+                }
+                
+                if (isset($_POST[newpassword_submit])) {
+                    $query = "UPDATE account SET password = '$_POST[password]' WHERE userid = '$_SESSION[userid]'";
+                    $result = pg_query($db, $query);
+                    if (!$result) {
+                        echo "Failed to change password.";
+                    }
+                    else {
+                        echo "Password updated!";
+                    }
                 }
             ?>
         </div>

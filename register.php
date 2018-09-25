@@ -28,23 +28,26 @@
         </div>
         
         <div class="container">
-            <div class="text-center" style="margin-bottom: 10px">
+            <div class="text-center">
                 <h1>Register here</h1>
-                <img src="./docs/logo.png" width="100" height="100" alt=""/>
             </div>
             
             <form action="register.php" method="POST">
                 <div class="form-group row">
-                    <label for="reg_userid" class="col-sm-1 col-form-label">UserID: </label>
-                    <div class="col-sm-10">
+                    <div class="col-lg-4"></div>
+                    <label for="reg_userid" class="col-lg-1 col-form-label">UserID: </label>
+                    <div class="col-lg-3">
                         <input name="reg_userid" class="form-control" placeholder="UserID" required/>
                     </div>
+                    <div class="col-lg-4"></div>
                 </div>
                 <div class="form-group row">
-                    <label for="reg_password" class="col-sm-1 col-form-label">Password: </label>
-                    <div class="col-sm-10">
+                    <div class="col-lg-4"></div>
+                    <label for="reg_password" class="col-lg-1 col-form-label">Password: </label>
+                    <div class="col-lg-3">
                         <input name="reg_password" type="password" class="form-control" placeholder="Password" required/>
                     </div>
+                    <div class="col-lg-4"></div>
                 </div>
                 <div class="form-group text-center">
                    <button class="btn btn-primary" type="submit" name="signup_submit">Register</button>

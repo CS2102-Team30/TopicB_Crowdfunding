@@ -14,6 +14,11 @@
     <body>
         <?php
             session_start();
+            
+            // to make sure user can only get here if he is logged in
+            if (!isset($_SESSION[userid])) {
+                header("Location: index.php");
+            }
         ?>
         
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,7 +49,7 @@
             </div>
         </nav>
         
-        <div class="container" id="mainpage">
+        <div class="container">
             <div class="text-center">
                 <h1>Account Settings</h1>
                 <br>
@@ -52,10 +57,12 @@
             
             <form action="account.php" method="POST">
                 <div class="form-group row">
-                    <label for="change_password" class="col-sm-2 col-form-label text-right">New password: </label>
-                    <div class="col-sm-10">
+                    <div class="col-lg-3"></div>
+                    <label for="change_password" class="col-lg-2 col-form-label text-right">New password: </label>
+                    <div class="col-lg-3">
                         <input name="change_password" type="password" class="form-control" placeholder="Password" required/>
                     </div>
+                    <div class="col-lg-3"></div>
                 </div>
                 <div class="form-group text-center">
                    <button class="btn btn-primary" type="submit" name="changepwd_submit">Change Password</button>
@@ -67,26 +74,21 @@
                     // connect to the database
                     $db = pg_connect("host=localhost port=5432 dbname=project1 user=postgres password=test");	
 
-                    if (isset($_SESSION[userid])) {  // to make sure user can only get here if he is logged in
-                        if (isset($_POST[logout_submit])) {
-                            session_unset();
-                            session_destroy();
-                            header("Location: index.php");
-                        }
-                        
-                        if (isset($_POST[changepwd_submit])) {
-                            $query = "UPDATE account SET password = '$_POST[change_password]' WHERE userid = '$_SESSION[userid]'";
-                            $result = pg_query($db, $query);
-                            if (!$result) {
-                                echo "Failed to change password.";
-                            }
-                            else {
-                                echo "Password updated!";
-                            }
-                        }
-                    }
-                    else {
+                    if (isset($_POST[logout_submit])) {
+                        session_unset();
+                        session_destroy();
                         header("Location: index.php");
+                    }
+                    
+                    if (isset($_POST[changepwd_submit])) {
+                        $query = "UPDATE account SET password = '$_POST[change_password]' WHERE userid = '$_SESSION[userid]'";
+                        $result = pg_query($db, $query);
+                        if (!$result) {
+                            echo "Failed to change password.";
+                        }
+                        else {
+                            echo "Password updated!";
+                        }
                     }
                 ?>
             </div>
