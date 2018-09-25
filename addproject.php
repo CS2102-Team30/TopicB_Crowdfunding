@@ -13,12 +13,8 @@
     
     <body>
         <?php
-            session_start();
-            
-            // to make sure user can only get here if he is logged in
-            if (!isset($_SESSION[userid])) {
-                header("Location: index.php");
-            }
+            //check if logged out
+            include_once("./php_funcs/checkLogOut.php");
         ?>
         
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -52,5 +48,10 @@
         <div class="container">
             <h1>Add your project here </h1>
         </div>
+        <?php
+            //log in to db
+            include_once('./php_funcs/connectDB.php');
+        ?>
+        
     </body>
 </html>

@@ -13,12 +13,8 @@
     
     <body>
         <?php
-            session_start();
-            
-            // to make sure user can only get here if he is logged in
-            if (!isset($_SESSION[userid])) {
-                header("Location: index.php");
-            }
+            //check if logged out
+            include_once("./php_funcs/checkLogOut.php");
         ?>
         
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -71,8 +67,8 @@
 
             <div class="text-center">
                 <?php
-                    // connect to the database
-                    $db = pg_connect("host=localhost port=5432 dbname=project1 user=postgres password=test");	
+                    //log in to db
+                    include_once('./php_funcs/connectDB.php');
 
                     if (isset($_POST[logout_submit])) {
                         session_unset();

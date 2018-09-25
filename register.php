@@ -13,13 +13,9 @@
     </head>
     
     <body>
-        <?php 
-            //check if user is logged in, if he is, redirect to main.php
-            session_start(); 
-            
-            if(isset($_SESSION[userid])) {
-                header("Location: main.php");
-            }
+        <?php
+            //check if logged in
+            include_once("./php_funcs/checkLogIn.php");
         ?>
         
         <div class="jumbotron text-center">
@@ -60,13 +56,8 @@
 
             <div class="text-center" style="margin-top: 1%">
                 <?php
-                    // Connect to the database
-                    $db = pg_connect("host=localhost port=5432 dbname=project1 user=postgres password=test");	
-                    if(!$db) {
-                        echo "Error : Unable to open database\n";
-                    } else {
-                        echo "Opened database successfully\n";
-                    }
+                    //log in to db
+                    include_once('./php_funcs/connectDB.php');
                     
                     if (isset($_POST['signup_submit'])) {
                         $query = "INSERT INTO account VALUES ('$_POST[reg_userid]', '$_POST[reg_password]')";
