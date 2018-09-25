@@ -18,10 +18,8 @@
             include_once("./php_funcs/checkLogIn.php");
         ?>
         
-        <div class="jumbotron text-center">
-            <h1>Welcome to Crowdfunding thingy</h1>
-            <p>Something something crowdfunding something</p> 
-        </div>       
+        <!-- Header file -->
+        <?php include("./template/jumbotron.php"); ?>
         
         <div class="container">
             <div class="text-center">
