@@ -26,7 +26,7 @@
         <span class="navbar-text" style="margin-right: 1%" >
             Logged in as <?php echo $_SESSION[userid]; ?>
         </span>
-        <form name="display" class="form-inline" action="main.php" method="POST">
+        <form name="display" class="form-inline" action="<?php echo $curFileName; ?>" method="POST">
             <button class="btn btn-outline-danger" type="submit" name="logout_submit">Logout</button>
         </form>
     </div>

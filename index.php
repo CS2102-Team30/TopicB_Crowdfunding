@@ -54,7 +54,7 @@
                         $query = "SELECT * FROM users WHERE userid='$_POST[userid]'";
                         $result = pg_query($db, $query);
                         if (!$result) {
-                            echo "Login failed!";
+                            echo "Username not inside database!";
                         }
                         else {
                             $row = pg_fetch_assoc($result);

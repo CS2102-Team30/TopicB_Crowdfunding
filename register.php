@@ -9,6 +9,8 @@
         <?php
             //check if logged in
             include_once("./php_funcs/checkLogIn.php");
+            //log in to db
+            include_once('./php_funcs/connectDB.php');
         ?>
         
         <!-- Header file -->
@@ -48,8 +50,6 @@
 
             <div class="text-center" style="margin-top: 1%">
                 <?php
-                    //log in to db
-                    include_once('./php_funcs/connectDB.php');
                     
                     if (isset($_POST['signup_submit'])) {
                         $query = "INSERT INTO users VALUES ('$_POST[reg_userid]', '$_POST[reg_password]', false)";
