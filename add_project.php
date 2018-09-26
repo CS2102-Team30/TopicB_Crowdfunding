@@ -20,7 +20,7 @@
                 <br>
             </div>
 
-            <form action="addproject.php" method="POST">
+            <form action="add_project.php" method="POST">
                 <div class="form-group row">
 					<div class="col-lg-1"></div>
                     <label for="title" class="col-lg-2 col-form-label">Project Title:</label>
@@ -41,7 +41,7 @@
 					<div class="col-lg-1"></div>
                     <label for="amount_sought" class="col-lg-2 col-form-label">Amount of funding sought:</label>
                     <div class="col-lg-8">
-                        <input name="amount_sought" class="form-control" placeholder="Amount" type="number" required/>
+                        <input name="amount_sought" class="form-control" placeholder="Amount" type="number" min="0" required/>
                     </div>
                     <div class="col-lg-1"></div>
                 </div>
@@ -49,7 +49,7 @@
 					<div class="col-lg-1"></div>
                     <label for="duration" class="col-lg-2 col-form-label">Project Duration (number of days):</label>
                     <div class="col-lg-8">
-                        <input name="duration" class="form-control" placeholder="Duration" type="number" required/>
+                        <input name="duration" class="form-control" placeholder="Duration" type="number" min="0" required/>
                     </div>
                     <div class="col-lg-1"></div>
                 </div>
@@ -65,26 +65,21 @@
                     <button class="btn btn-primary" type="submit" name="project_submit">Confirm Project Submission</button>
                 </div>
             </form>
-        </div>
-        
-        <?php
-            //log in to db
-            include_once('./php_funcs/connectDB.php');
+            <div class="text-center">
+            <?php
+                //log in to db
+                include_once('./php_funcs/connectDB.php');
 
-            if (isset($_POST[logout_submit])) {
-                include('./php_funcs/logOut.php');
-            }
+                if (isset($_POST[logout_submit])) {
+                    include('./php_funcs/logOut.php');
+                }
 
-            if (isset($_POST[project_submit])) {
-                if ($_POST[amount_sought] <= 0) echo "Amount of funding sought needs to be more than $0";
-                else if ($_POST[duration] <= 0) echo "Project duration needs to be more than 0 days";
-                else {
+                if (isset($_POST[project_submit])) {
                     $projectid = uniqid('', true);
                     $start_date = date("d/m/Y");
                     $query = "INSERT INTO projects VALUES ('$_SESSION[userid]', '$projectid', '$_POST[title]', '$_POST[description]', 
                         '$start_date', '$_POST[duration]', '$_POST[keywords]', '$_POST[amount_sought]', '0')";
-                    $result = pg_query($db, $query);
-                    
+                    $result = pg_query($db, $query);                  
                     if (!$result) {
                         echo "Project submission failed, please try again";
                     }
@@ -92,12 +87,13 @@
                         echo "Project successfully submitted";
                     }
                 }
-            }
-        ?>
-        <?php
-            if (isset($_POST[logout_submit])) {
-                include('./php_funcs/logOut.php');
-            }
-        ?>
+            ?>
+            </div>
+            <?php
+                if (isset($_POST[logout_submit])) {
+                    include('./php_funcs/logOut.php');
+                }
+            ?>
+        </div>
     </body>
 </html>

@@ -59,7 +59,7 @@
                         else {
                             $row = pg_fetch_assoc($result);
                             if ($_POST[password] != $row[password]) {
-                                echo "Login failed!";
+                                echo "Wrong password!";
                             }
                             else {
                                 $_SESSION[userid] = $row[userid];

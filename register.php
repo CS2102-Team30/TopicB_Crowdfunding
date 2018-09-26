@@ -55,7 +55,7 @@
                         $query = "INSERT INTO users VALUES ('$_POST[reg_userid]', '$_POST[reg_password]', false)";
                         $result = pg_query($db, $query);
                         if (!$result) {
-                            echo "Signup failed!";
+                            echo "Signup failed! Username taken!";
                         }
                         else {
                             echo "Signup successful! Return to the ";
