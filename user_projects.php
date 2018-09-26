@@ -25,7 +25,7 @@
             
             <?php
                 // Retrieving projects from DB
-                $result = pg_query("SELECT title, advertiser, start_date, duration, amount_funded, funding_sought FROM projects WHERE advertiser = '$_SESSION[userid]'");
+                $result = pg_query("SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, projectid FROM projects WHERE advertiser = '$_SESSION[userid]'");
             ?>
              <!-- Display information from Database in table form -->
             <?php include("./template/project_table.php"); ?>
