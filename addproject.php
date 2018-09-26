@@ -12,9 +12,59 @@
         
         <!-- Nav bar -->
         <?php include("./template/nav.php"); ?>
-        
+
         <div class="container">
-            <h1>Add your project here </h1>
+            <div class="text-center">
+                <br>
+                <h1>Have an idea? <br>Let's get started right here. </h1>
+                <br>
+            </div>
+
+            <form action="addproject.php" method="POST">
+                <div class="form-group row">
+					<div class="col-lg-1"></div>
+                    <label for="title" class="col-lg-2 col-form-label">Project Title:</label>
+                    <div class="col-lg-8">
+                        <input name="title" class="form-control" placeholder="Title" required/>
+                    </div>
+					<div class="col-lg-1"></div>
+                </div>
+                <div class="form-group row">
+					<div class="col-lg-1"></div>
+                    <label for="description" class="col-lg-2 col-form-label">Project Description:</label>
+                    <div class="col-lg-8">
+                        <textarea name="description" class="form-control" placeholder="Description" rows="5" required></textarea>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="form-group row">
+					<div class="col-lg-1"></div>
+                    <label for="amount_sought" class="col-lg-2 col-form-label">Amount of funding sought:</label>
+                    <div class="col-lg-8">
+                        <input name="amount_sought" class="form-control" placeholder="Amount" type="number" required/>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="form-group row">
+					<div class="col-lg-1"></div>
+                    <label for="duration" class="col-lg-2 col-form-label">Project Duration (number of days):</label>
+                    <div class="col-lg-8">
+                        <input name="duration" class="form-control" placeholder="Duration" type="number" required/>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="form-group row">
+					<div class="col-lg-1"></div>
+                    <label for="keywords" class="col-lg-2 col-form-label">Keywords</label>
+                    <div class="col-lg-8">
+                        <input name="keywords" class="form-control" placeholder="Keywords"/>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-primary" type="submit" name="project_submit">Confirm Project Submission</button>
+                </div>
+            </form>
         </div>
         
         <?php
@@ -23,6 +73,25 @@
 
             if (isset($_POST[logout_submit])) {
                 include('./php_funcs/logOut.php');
+            }
+
+            if (isset($_POST[project_submit])) {
+                if ($_POST[amount_sought] <= 0) echo "Amount of funding sought needs to be more than $0";
+                else if ($_POST[duration] <= 0) echo "Project duration needs to be more than 0 days";
+                else {
+                    $projectid = uniqid('', true);
+                    $start_date = date("d/m/Y");
+                    $query = "INSERT INTO projects VALUES ('$_SESSION[userid]', '$projectid', '$_POST[title]', '$_POST[description]', 
+                        '$start_date', '$_POST[duration]', '$_POST[keywords]', '$_POST[amount_sought]', '0')";
+                    $result = pg_query($db, $query);
+                    
+                    if (!$result) {
+                        echo "Project submission failed, please try again";
+                    }
+                    else {
+                        echo "Project successfully submitted";
+                    }
+                }
             }
         ?>
         
