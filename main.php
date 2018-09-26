@@ -90,7 +90,6 @@
 				</div>
 			</div>
 			
->>>>>>> fe745f15b4e9c5dc66ba2085ae195278a951889b
             <?php
                 if (isset($_POST[logout_submit])) {
                     include('./php_funcs/logOut.php');
