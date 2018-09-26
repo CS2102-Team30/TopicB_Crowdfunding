@@ -1,7 +1,7 @@
 <table class="table table-hover table-bordered thead-light">
     <tr>
     <?php
-        //last row is which we do not want to load. hence -1 in for loop
+        //last column is project id, which we do not want to load in the table. hence -1 in for loop
         for($i = 0; $i < pg_num_fields($result)-1; $i++) {
             $fieldName = pg_field_name($result, $i);
     ?>
@@ -13,6 +13,7 @@
     <?php
         // Getting data
         while ($row = pg_fetch_row($result))  {
+            $projectid = $row[6];
     ?>
             <tr class="projectRow" data-id="<?php echo $projectid;?>">
     <?php
@@ -23,7 +24,8 @@
     <?php
                 next($row);
             }
-            $projectid = current($row);
+            
+            //skip projectid row
             next($row);
     ?>
             </tr>
