@@ -43,7 +43,7 @@
                     }
                     
                     if (isset($_POST[changepwd_submit])) {
-                        $query = "UPDATE account SET password = '$_POST[change_password]' WHERE userid = '$_SESSION[userid]'";
+                        $query = "UPDATE users SET password = '$_POST[change_password]' WHERE userid = '$_SESSION[userid]'";
                         $result = pg_query($db, $query);
                         if (!$result) {
                             echo "Failed to change password.";
