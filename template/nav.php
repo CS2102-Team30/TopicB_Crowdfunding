@@ -13,17 +13,18 @@
             <li class="nav-item <?php if ($curFileName == "main.php") {?>active<?php }?>">
                 <a class="nav-link" href="main.php">Home</a>
             </li>
-            <li class="nav-item <?php if ($curFileName == "addproject.php") {?>active<?php }?>">
-                <a class="nav-link" href="addproject.php">Start a project</a>
+            <li class="nav-item <?php if ($curFileName == "user_projects.php") {?>active<?php }?>">
+                <a class="nav-link" href="user_projects.php">Your projects</a>
+            </li>
+            <li class="nav-item <?php if ($curFileName == "add_project.php") {?>active<?php }?>">
+                <a class="nav-link" href="add_project.php">Start a project</a>
             </li>
             <li class="nav-item <?php if ($curFileName == "account.php") {?>active<?php }?>">
                 <a class="nav-link" href="account.php">Settings</a>
             </li>
         </ul>
         <span class="navbar-text" style="margin-right: 1%" >
-            <?php 
-                echo "Logged in as"." $_SESSION[userid]";
-            ?>
+            Logged in as <?php echo $_SESSION[userid]; ?>
         </span>
         <form name="display" class="form-inline" action="main.php" method="POST">
             <button class="btn btn-outline-danger" type="submit" name="logout_submit">Logout</button>
