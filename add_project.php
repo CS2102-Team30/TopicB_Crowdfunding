@@ -94,6 +94,10 @@
                 }
             }
         ?>
-        
+        <?php
+            if (isset($_POST[logout_submit])) {
+                include('./php_funcs/logOut.php');
+            }
+        ?>
     </body>
 </html>
