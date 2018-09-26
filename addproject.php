@@ -76,17 +76,21 @@
             }
 
             if (isset($_POST[project_submit])) {
-                $projectid = uniqid('', true);
-                $start_date = date("d/m/Y");
-                $query = "INSERT INTO projects VALUES ('$_SESSION[userid]', '$projectid', '$_POST[title]', '$_POST[description]', 
-                    '$start_date', '$_POST[duration]', '$_POST[keywords]', '$_POST[amount_sought]', '0')";
-                $result = pg_query($db, $query);
-                
-                if (!$result) {
-                    echo "Project submission failed, please try again";
-                }
+                if ($_POST[amount_sought] <= 0) echo "Amount of funding sought needs to be more than $0";
+                else if ($_POST[duration] <= 0) echo "Project duration needs to be more than 0 days";
                 else {
-                    echo "Project successfully submitted";
+                    $projectid = uniqid('', true);
+                    $start_date = date("d/m/Y");
+                    $query = "INSERT INTO projects VALUES ('$_SESSION[userid]', '$projectid', '$_POST[title]', '$_POST[description]', 
+                        '$start_date', '$_POST[duration]', '$_POST[keywords]', '$_POST[amount_sought]', '0')";
+                    $result = pg_query($db, $query);
+                    
+                    if (!$result) {
+                        echo "Project submission failed, please try again";
+                    }
+                    else {
+                        echo "Project successfully submitted";
+                    }
                 }
             }
         ?>
