@@ -70,10 +70,6 @@
                 //log in to db
                 include_once('./php_funcs/connectDB.php');
 
-                if (isset($_POST[logout_submit])) {
-                    include('./php_funcs/logOut.php');
-                }
-
                 if (isset($_POST[project_submit])) {
                     $projectid = uniqid('', true);
                     $start_date = date("d/m/Y");
@@ -89,11 +85,6 @@
                 }
             ?>
             </div>
-            <?php
-                if (isset($_POST[logout_submit])) {
-                    include('./php_funcs/logOut.php');
-                }
-            ?>
         </div>
     </body>
 </html>

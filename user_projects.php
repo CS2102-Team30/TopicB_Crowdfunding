@@ -29,12 +29,6 @@
             ?>
              <!-- Display information from Database in table form -->
             <?php include("./template/project_table.php"); ?>
-            
-            <?php
-                if (isset($_POST[logout_submit])) {
-                    include('./php_funcs/logOut.php');
-                }
-            ?>
         </div>
     </body>
 </html>

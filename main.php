@@ -91,7 +91,7 @@
             $(document).ready(function () {
                 $(".projectRow").click(function () {
                     console.log($(this).data());
-                    var content = './getContent.php?projectid=';
+                    var content = './php_funcs/getContent.php?projectid=';
                     content += $(this).data().id;
                     $('.modal-body').load(content, function() {
                         $('#projectModal').modal();
