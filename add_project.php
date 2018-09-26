@@ -41,7 +41,7 @@
 					<div class="col-lg-1"></div>
                     <label for="amount_sought" class="col-lg-2 col-form-label">Amount of funding sought:</label>
                     <div class="col-lg-8">
-                        <input name="amount_sought" class="form-control" placeholder="Amount" type="number" min="0" required/>
+                        <input name="amount_sought" class="form-control" placeholder="Amount" type="number" min="1" required/>
                     </div>
                     <div class="col-lg-1"></div>
                 </div>
@@ -49,7 +49,7 @@
 					<div class="col-lg-1"></div>
                     <label for="duration" class="col-lg-2 col-form-label">Project Duration (number of days):</label>
                     <div class="col-lg-8">
-                        <input name="duration" class="form-control" placeholder="Duration" type="number" min="0" required/>
+                        <input name="duration" class="form-control" placeholder="Duration" type="number" min="1" required/>
                     </div>
                     <div class="col-lg-1"></div>
                 </div>

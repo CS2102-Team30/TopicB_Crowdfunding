@@ -11,6 +11,8 @@
             include_once("./php_funcs/checkLogOut.php");
             //log in to db
             include_once('./php_funcs/connectDB.php');
+            
+            $s = $_GET['s'];
         ?>
         
         <!-- Nav bar -->
@@ -25,7 +27,7 @@
                 // Retrieving projects from DB
                 $result = pg_query("SELECT title, advertiser, start_date, duration, amount_funded, funding_sought FROM projects WHERE advertiser = '$_SESSION[userid]'");
             ?>
-
+             <!-- Display information from Database in table form -->
             <?php include("./template/project_table.php"); ?>
             
             <?php
