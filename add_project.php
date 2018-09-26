@@ -20,7 +20,7 @@
                 <br>
             </div>
 
-            <form action="add_project.php" method="POST">
+            <form action="./php_funcs/process_add.php" method="POST">
                 <div class="form-group row">
 					<div class="col-lg-1"></div>
                     <label for="title" class="col-lg-2 col-form-label">Project Title:</label>
@@ -67,22 +67,14 @@
             </form>
             <div class="text-center">
             <?php
-                //log in to db
-                include_once('./php_funcs/connectDB.php');
-
-                if (isset($_POST[project_submit])) {
-                    $projectid = uniqid('', true);
-                    $start_date = date("d/m/Y");
-                    $query = "INSERT INTO projects VALUES ('$_SESSION[userid]', '$projectid', '$_POST[title]', '$_POST[description]', 
-                        '$start_date', '$_POST[duration]', '$_POST[keywords]', '$_POST[amount_sought]', '0')";
-                    $result = pg_query($db, $query);                  
-                    if (!$result) {
-                        echo "Project submission failed, please try again";
-                    }
-                    else {
-                        echo "Project successfully submitted";
-                    }
-                }
+                if ($_SESSION[submit_state] == "failed") {
+                    echo "Project submission failed, please try again";
+					$_SESSION[submit_state] = "";
+				}
+                else if ($_SESSION[submit_state] == "success"){
+                    echo "Project successfully submitted";
+					$_SESSION[submit_state] = "";
+				}else{}
             ?>
             </div>
         </div>

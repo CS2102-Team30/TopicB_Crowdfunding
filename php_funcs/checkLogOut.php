@@ -3,6 +3,6 @@
     
     //if logged out, redirect to index page
     if(!isset($_SESSION['userid'])) {
-        header("Location: index.php");
+        header("../Location: index.php");
     }
 ?>
