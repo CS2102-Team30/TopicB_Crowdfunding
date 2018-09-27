@@ -35,7 +35,7 @@
 					<br>
 					<?php
 						// Retrieving projects from DB
-						$result = pg_query('SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, projectid FROM projects');
+						$result = pg_query('SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects');
 					?>
 
 					<?php include('./template/project_table.php'); ?>
@@ -49,7 +49,7 @@
 					<br>
 					<?php
 						// Retrieving projects from DB
-						$result = pg_query('SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, projectid FROM projects
+						$result = pg_query('SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects
 							WHERE amount_funded >= funding_sought');
 					?>
 
@@ -71,7 +71,7 @@
 					<?php
 						if (isset($_POST['search'])) {
 							//Currently only allows direct string comparison
-							$result = pg_query("SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, projectid FROM projects
+							$result = pg_query("SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects
 								WHERE title = '$_POST[search_field]'");
 						}
 					?>
@@ -89,29 +89,38 @@
         
         <script>
             $(document).ready(function () {
-                $(".projectRow").click(function () {
-                    console.log($(this).data());
-                    var content = './php_funcs/getContent.php?projectid=';
-                    content += $(this).data().id;
-                    $('.modal-body').load(content, function() {
-                        $('#projectModal').modal();
-                    });
+                $("#projectModal").on('show.bs.modal', function (event) {
+					var button = $(event.relatedTarget);
+					var modal = $(this);
+					modal.find('.modal-title').text("Details about " + button.data('title'));
+					modal.find('.modal-body #description').text("Description: " + button.data('description'));
+					modal.find('.modal-body #startdate').text("Start Date: " + button.data('startdate'));
+					modal.find('.modal-body #duration').text("Duration: " + button.data('duration') + " days");
                 });
+
+			// 	console.log($(this).data());
+                
+            //     content += $(this).data().id;
+            //      $('.modal-body').load(content, function() {
+            //         $('#projectModal').modal();
+            //     });
             });
         </script>
     </body>
     
     <!-- Modal -->
-    <div id="projectModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <div id="projectModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" style="text-left">Description</h4>
+                    <h4 class="modal-title" style="text-left"></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                
+					<p id="description"/>
+					<p id="startdate"/>
+					<p id="duration"/>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

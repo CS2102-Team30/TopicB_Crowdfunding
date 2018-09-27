@@ -1,35 +1,22 @@
-<table class="table table-hover table-bordered thead-light">
-    <tr>
-    <?php
-        //last column is project id which we do not want to load in the table. hence -1 in for loop
-        $minus = 1;
-        for($i = 0; $i < pg_num_fields($result)- $minus; $i++) {
-            $fieldName = pg_field_name($result, $i);
-    ?>
-            <th><?php echo $fieldName?></th>
-    <?php
-        }
-    ?>
-    </tr>
-    <?php
-        // Getting data, index var stores the index of the rows
-        $index = 0;
-        while ($row = pg_fetch_row($result))  {
-            $projectid = $row[pg_num_fields($result)-1];
-    ?>
-            <tr class="projectRow" data-id="<?php echo $projectid;?>">
-    <?php
-            for($i = 0;$i < pg_num_fields($result)- $minus; $i++) {
-                $cur_row = current($row);
-    ?>
-                <td><?php echo $cur_row?></td>
-    <?php
-                next($row);
-            }
-            $index++;
-    ?>
-            </tr>
-    <?php
-        }
-    ?>
-</table>
+<?php
+	// Getting data, index var stores the index of the rows
+	$index = 0;
+	while ($row = pg_fetch_row($result))  {
+		$projectid = $row[pg_num_fields($result)-1];
+?>
+		<div class="card" data-id="<?php echo $projectid;?>">
+			<div class="card-header">
+				<?php echo $row[0];?>
+			</div>
+			<div class="card-body">
+				<?php echo "<p>" . "Advertised by: " . $row[1] . " | " . "Currently raised: " . "$". $row[4] . "/" . "$" . $row[5] . "</p>"; ?>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal" 
+				data-description="<?php echo $row[6];?>" data-title="<?php echo $row[0];?>" data-startdate="<?php echo $row[2];?>" data-duration="<?php echo $row[3];?>">
+					Find out more
+				</button>
+			</div>
+		</div>
+		<br>
+<?php
+	}
+?>
