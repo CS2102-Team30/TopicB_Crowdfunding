@@ -12,5 +12,5 @@
     }
     else {
 	}
-	header("Location: ../user_projects.php");
+	header("Location: $_SERVER[HTTP_REFERER]");
 ?>

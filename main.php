@@ -90,7 +90,7 @@
         </div>
         
         <script>
-            $(document).ready(function () {
+			$(document).ready(function () {
                 $("#projectModal").on('show.bs.modal', function (event) {
 					var button = $(event.relatedTarget);
 					var modal = $(this);
@@ -98,7 +98,8 @@
 					modal.find('.modal-body #description').text("Description: " + button.data('description'));
 					modal.find('.modal-body #startdate').text("Start Date: " + button.data('startdate'));
 					modal.find('.modal-body #duration').text("Duration: " + button.data('duration') + " days");
-                });
+					modal.find('.modal-footer #deletebutton').val(button.data('projectid'));
+				});
 
 			// 	console.log($(this).data());
                 
@@ -125,9 +126,31 @@
 					<p id="duration"/>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<?php if($_SESSION[isadmin] == "t") {?>
+						<button id="deletebutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="delete">Delete</button>
+                    <?php }?>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>  
         </div>
     </div>
+	<script>
+		$("[data-modal-action=delete]").click(function (event) {
+			var button = $(event.target);
+			var id = button.val();
+			$("#projectModal").modal("hide");
+
+			var form = document.createElement("form");
+			form.setAttribute("method", "post");
+			form.setAttribute("action", "php_funcs/process_delete.php");
+
+			var hiddenField = document.createElement("input");
+			hiddenField.setAttribute("type", "hidden");
+			hiddenField.setAttribute("name", "deleteid");
+			hiddenField.setAttribute("value", id);
+			form.appendChild(hiddenField);
+			document.body.appendChild(form);
+			form.submit();	
+		});
+	</script>
 </html>
