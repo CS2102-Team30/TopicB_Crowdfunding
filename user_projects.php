@@ -28,50 +28,11 @@
              <!-- Display information from Database in table form -->
             <?php include("./template/project_table.php"); ?>
         </div>
-
-        <script>
-            $(document).ready(function () {
-                $("#projectModal").on('show.bs.modal', function (event) {
-					var button = $(event.relatedTarget);
-					var modal = $(this);
-					modal.find('.modal-title').text("Details about " + button.data('title'));
-					modal.find('.modal-body #description').text("Description: " + button.data('description'));
-					modal.find('.modal-body #startdate').text("Start Date: " + button.data('startdate'));
-					modal.find('.modal-body #duration').text("Duration: " + button.data('duration') + " days");
-					modal.find('.modal-footer #deletebutton').val(button.data('projectid'));	
-				});
-				
-			// 	console.log($(this).data());
-                
-            //     content += $(this).data().id;
-            //      $('.modal-body').load(content, function() {
-            //         $('#projectModal').modal();
-            //     });
-            });
-        </script>
     </body>
 
     <!-- Modal -->
-    <div id="projectModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" style="text-left"></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-					<p id="description"/>
-					<p id="startdate"/>
-					<p id="duration"/>
-                </div>
-				<div class="modal-footer">
-					<button id="deletebutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="delete">Delete</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>  
-        </div>
-    </div>
+    <?php include("./template/project_modal.php"); ?>
+    
 	<script>
 		$("[data-modal-action=delete]").click(function (event) {
 			var button = $(event.target);
