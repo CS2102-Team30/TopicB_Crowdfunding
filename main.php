@@ -43,7 +43,7 @@
 				
 				<div id="viewFunded" class="tab-pane fade">
 					<br>
-					<h3>Our Success Stories.</h3>
+					<h3>Our success stories.</h3>
 					<p> We love to see projects succeed through our platform. <br>
 						Here are the list of projects that have met and exceeded their own fund goals.</p>
 					<br>
@@ -63,6 +63,7 @@
 					<form action="main.php" method="POST">
 						<label for="search_field" class="col-lg-1 col-form-label">Search: </label>
 						<input name="search_field" class="form-control" placeholder="Any relevant keywords" required/>
+						<br>
 						<div class="text-center">
 							<button class="btn btn-primary" type="submit" name="search">Search</button>
 						</div>
@@ -70,9 +71,10 @@
 					<br> 
 					<?php
 						if (isset($_POST['search'])) {
-							//Currently only allows direct string comparison
+							//Searches title and keywords, Finds any values that have "word" in any position, Case-insensitive
 							$result = pg_query("SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects
-								WHERE title = '$_POST[search_field]'");
+								WHERE UPPER(title) LIKE UPPER('%$_POST[search_field]%')
+								OR UPPER(keywords) LIKE UPPER('%$_POST[search_field]%')");
 						}
 					?>
 					
