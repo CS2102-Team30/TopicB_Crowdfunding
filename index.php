@@ -63,7 +63,8 @@
                             }
                             else {
                                 $_SESSION[userid] = $row[userid];
-                                header("Location: main.php");
+                                $_SESSION[isadmin] = $row[isadmin];
+								header("Location: main.php");
                             }
                         }
                     }
