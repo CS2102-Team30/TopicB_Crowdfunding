@@ -11,7 +11,7 @@
 			<div class="card-body">
 				<?php echo "<p>" . "Advertised by: " . $row[1] . " | " . "Currently raised: " . "$". $row[4] . "/" . "$" . $row[5] . "</p>"; ?>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal" 
-				data-description="<?php echo $row[6];?>" data-title="<?php echo $row[0];?>" data-startdate="<?php echo $row[2];?>" data-duration="<?php echo $row[3];?>">
+				data-description="<?php echo $row[6];?>" data-title="<?php echo $row[0];?>" data-startdate="<?php echo $row[2];?>" data-duration="<?php echo $row[3];?>" data-projectid="<?php echo $row[7];?>">
 					Find out more
 				</button>
 			</div>
