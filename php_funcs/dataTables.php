@@ -18,7 +18,7 @@
             '</tr>'+
             '<tr>'+
                 '<td>Duration of project:</td>'+
-                '<td>'+startDate.toLocaleDateString("en-GB")+' to '+endDate.toLocaleDateString("en-GB")+'</td>'+
+                '<td>'+startDate.toLocaleDateString("en-UK")+' to '+endDate.toLocaleDateString("en-UK")+'</td>'+
             '</tr>'+
             '<tr>'+
                 '<td>Progress:</td>'+
