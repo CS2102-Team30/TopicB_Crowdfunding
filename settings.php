@@ -38,13 +38,9 @@
                 <?php
                     //log in to db
                     include_once('./php_funcs/connectDB.php');
-
-                    if (isset($_POST[logout_submit])) {
-                        include('./php_funcs/logOut.php');
-                    }
                     
-                    if (isset($_POST[changepwd_submit])) {
-                        $query = "UPDATE users SET password = '$_POST[change_password]' WHERE userid = '$_SESSION[userid]'";
+                    if (isset($_POST['changepwd_submit'])) {
+                        $query = "UPDATE users SET password = " + $_POST['change_password'] + " WHERE userid = " + $_SESSION['userid'];
                         $result = pg_query($db, $query);
                         if (!$result) {
                             echo "Failed to change password.";

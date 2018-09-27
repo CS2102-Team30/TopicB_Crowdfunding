@@ -67,13 +67,13 @@
             </form>
             <div class="text-center">
             <?php
-                if ($_SESSION[submit_state] == "failed") {
+                if ($_SESSION['submit_state'] == "failed") {
                     echo "Project submission failed, please try again";
-					$_SESSION[submit_state] = "";
+					$_SESSION['submit_state'] = "";
 				}
-                else if ($_SESSION[submit_state] == "success"){
+                else if ($_SESSION['submit_state'] == "success"){
                     echo "Project successfully submitted";
-					$_SESSION[submit_state] = "";
+					$_SESSION['submit_state'] = "";
 				}else{}
             ?>
             </div>

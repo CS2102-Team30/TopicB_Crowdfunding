@@ -10,11 +10,11 @@
     $result = pg_query($db, $query);                  
     if (!$result) {
         echo "Project submission failed, please try again";
-		$_SESSION[submit_state] = "failed";
+		$_SESSION['submit_state'] = "failed";
     }
     else {
         echo "Project successfully submitted";
-		$_SESSION[submit_state] = "success";
+		$_SESSION['submit_state'] = "success";
 	}
 	header("Location: ../add_project.php");
 ?>

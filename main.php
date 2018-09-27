@@ -35,7 +35,8 @@
 					<br>
 					<?php
 						// Retrieving projects from DB
-						$result = pg_query('SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects');
+                        $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects";
+						$result = pg_query($db, $query);
 					?>
 
 					<?php include('./template/project_table.php'); ?>
@@ -49,8 +50,8 @@
 					<br>
 					<?php
 						// Retrieving projects from DB
-						$result = pg_query('SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects
-							WHERE amount_funded >= funding_sought');
+                        $query = 'SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects WHERE amount_funded >= funding_sought';
+						$result = pg_query($db, $query);
 					?>
 
 					<?php include('./template/project_table.php'); ?>
@@ -81,12 +82,6 @@
 					<?php include('./template/project_table.php'); ?>
 				</div>
 			</div>
-			
-            <?php
-                if (isset($_POST[logout_submit])) {
-                    include('./php_funcs/logOut.php');
-                }
-            ?>
         </div>
         
         <script>

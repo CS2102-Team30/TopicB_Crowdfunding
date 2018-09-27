@@ -19,8 +19,8 @@
             <li class="nav-item <?php if ($curFileName == "add_project.php") {?>active<?php }?>">
                 <a class="nav-link" href="add_project.php">Start a project</a>
             </li>
-            <li class="nav-item <?php if ($curFileName == "account.php") {?>active<?php }?>">
-                <a class="nav-link" href="account.php">Settings</a>
+            <li class="nav-item <?php if ($curFileName == "settings.php") {?>active<?php }?>">
+                <a class="nav-link" href="settings.php">Settings</a>
             </li>
         </ul>
         <span class="navbar-text" style="margin-right: 1%" >

@@ -10,9 +10,7 @@
             //check if logged out
             include_once("./php_funcs/checkLogOut.php");
             //log in to db
-            include_once('./php_funcs/connectDB.php');
-            
-            $s = $_GET['s'];
+            include_once('./php_funcs/connectDB.php');        
         ?>
         
         <!-- Nav bar -->
