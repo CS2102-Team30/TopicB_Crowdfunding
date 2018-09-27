@@ -79,23 +79,12 @@
 					<?php include('./template/project_table.php'); ?>
 				</div>
 			</div>
-			
-            <?php
-                if (isset($_POST[logout_submit])) {
-                    include('./php_funcs/logOut.php');
-                }
-            ?>
         </div>
         
         <script>
-            $(document).ready(function () {
-                $(".projectRow").click(function () {
-                    console.log($(this).data());
-                    var content = './php_funcs/getContent.php?projectid=';
-                    content += $(this).data().id;
-                    $('.modal-body').load(content, function() {
-                        $('#projectModal').modal();
-                    });
+            $(document).ready(function() {
+                $('#projecttable').DataTable( {
+                    "order": [[ 0, "desc" ]]
                 });
             });
         </script>

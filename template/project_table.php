@@ -1,5 +1,5 @@
-<table class="table table-hover table-bordered thead-light">
-    <tr>
+<table id="projecttable" class="table table-hover table-bordered thead-light">
+    <thead><tr>
     <?php
         //last column is project id which we do not want to load in the table. hence -1 in for loop
         $minus = 1;
@@ -10,7 +10,8 @@
     <?php
         }
     ?>
-    </tr>
+    </tr></thead>
+    <tbody>
     <?php
         // Getting data, index var stores the index of the rows
         $index = 0;
@@ -32,4 +33,5 @@
     <?php
         }
     ?>
+    </tbody>
 </table>
