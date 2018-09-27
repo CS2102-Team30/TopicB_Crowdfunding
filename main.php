@@ -91,7 +91,6 @@
         
         <script>
             $(document).ready(function () {
-<<<<<<< HEAD
                 $("#projectModal").on('show.bs.modal', function (event) {
 					var button = $(event.relatedTarget);
 					var modal = $(this);
@@ -99,15 +98,6 @@
 					modal.find('.modal-body #description').text("Description: " + button.data('description'));
 					modal.find('.modal-body #startdate').text("Start Date: " + button.data('startdate'));
 					modal.find('.modal-body #duration').text("Duration: " + button.data('duration') + " days");
-=======
-                $(".projectRow").click(function () {
-                    console.log($(this).data());
-                    var content = './php_funcs/getContent.php?projectid=';
-                    content += $(this).data().id;
-                    $('.modal-body').load(content, function() {
-                        $('#projectModal').modal();
-                    });
->>>>>>> parent of 4a2c703... datatables
                 });
 
 			// 	console.log($(this).data());
