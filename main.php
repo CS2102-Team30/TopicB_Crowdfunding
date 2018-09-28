@@ -20,7 +20,7 @@
             <h2>Browse projects here:</h2>
 			
 			<!-- Nav tabs -->
-			<ul class="nav nav-tabs">
+			<ul class="nav nav-tabs" id="viewTabs">
 				<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#viewAll">View All</a></li>
 				<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#viewFunded">View Funded</a></li>
 				<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#search">Search</a></li>
@@ -35,10 +35,25 @@
 					<br>
 					<?php
 						// Retrieving projects from DB
-                        $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects";
+                        //sort by amount_funded by default in descending order
+                        if(!isset($_GET['order'])) {
+                            $order = "desc";
+                        }
+                        else {
+                            $order = $_GET['order'];
+                        }
+                        
+                        if(!isset($_GET['sort'])) {
+                            $sort = 'amount_funded';
+                        }
+                        else {
+                            $sort = $_GET['sort'];
+                        }
+                        
+                        $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects ORDER BY $sort $order";
 						$result = pg_query($db, $query);
 					?>
-
+                    <?php include ('./template/navSort.php'); ?>
 					<?php include('./template/project_table.php'); ?>
 				</div>
 				
@@ -50,10 +65,9 @@
 					<br>
 					<?php
 						// Retrieving projects from DB
-                        $query = 'SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects WHERE amount_funded >= funding_sought';
+                        $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects WHERE amount_funded >= funding_sought";
 						$result = pg_query($db, $query);
 					?>
-
 					<?php include('./template/project_table.php'); ?>
 				</div>
 				
@@ -89,6 +103,21 @@
     <?php include("./template/project_modal.php"); ?>
     
 	<script>
+        $('#viewTabs a').click(function(e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+        
+        // store the currently selected tab in the hash value
+        $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
+            var id = $(e.target).attr("href").substr(1);
+            window.location.hash = id;
+        });
+        
+        // on load of the page: switch to the currently selected tab
+        var hash = window.location.hash;
+        $('#viewTabs a[href="' + hash + '"]').tab('show');
+
 		$("[data-modal-action=delete]").click(function (event) {
 			var button = $(event.target);
 			var id = button.val();
