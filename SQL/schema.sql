@@ -16,12 +16,12 @@ CREATE TABLE projects (
 	amount_funded INT NOT NULL CHECK (amount_funded >= 0)
 );
 
-
 CREATE TABLE invest (
+    invest_date TIMESTAMP NOT NULL,
 	investor VARCHAR(30) REFERENCES users(userid),
 	projectid VARCHAR(23) REFERENCES projects(projectid) ON DELETE CASCADE,
-	PRIMARY KEY(investor, projectid),
-amount INT NOT NULL
+	PRIMARY KEY(invest_date, investor, projectid),
+    amount INT NOT NULL
 );
 
 ALTER DATABASE project1 SET datestyle TO "ISO, DMY";

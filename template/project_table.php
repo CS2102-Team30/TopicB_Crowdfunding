@@ -1,6 +1,4 @@
 <?php
-	// Getting data, index var stores the index of the rows
-	$index = 0;
 	while ($row = pg_fetch_assoc($result))  {
 		$projectid = $row['projectid'];
 ?>
