@@ -19,18 +19,12 @@
 			<br>
             <h2>Creative projects coming to life.</h2>
 			<p> Here are the list of all projects.</p>
-			<form action="main.php" method="GET">
-				<label for="search_field" class="col-lg-1 col-form-label">Search: </label>
-				<input name="search_field" class="form-control" placeholder="Any relevant keywords" required/>
-				<br>
-				<div class="text-center">
-					<button class="btn btn-primary" type="submit">Search</button>
-				</div>
-			</form>
-			<br>
+            <br>
+            <?php include("./template/project_search.php"); ?>
+            
 			<?php
 				// Retrieving projects from DB
-                //sort by amount_funded by default in descending order
+                // sort by amount_funded by default in descending order
                 if(!isset($_GET['order'])) {
                     $order = "desc";
                 }
@@ -62,6 +56,17 @@
             
 			<?php include ('./template/navSort.php'); ?>
 			<?php include('./template/project_table.php'); ?>		
+            
+            <?php
+                if(pg_num_rows($result) == 0) {
+                    if($search == null) {
+                        echo "There does not seem to be anything inside the DB";
+                    }
+                    else {
+                        echo "Your search '".$search."' returned with nothing! Try something else.";
+                    }
+                }
+            ?>
         </div>
     </body>
     

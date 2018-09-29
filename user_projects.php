@@ -1,29 +1,29 @@
 <!DOCTYPE html>  
+<html lang="en">
     <head>
         <title>Welcome to Crowdfunding!</title>
         <?php include("./template/head.php"); ?>
     </head>
     
-    <body>       
+    <body>
         <?php
             //check if logged out
             include_once("./php_funcs/checkLogOut.php");
             //log in to db
-            include_once('./php_funcs/connectDB.php');
+            include_once('./php_funcs/connectDB.php');        
         ?>
         
         <!-- Nav bar -->
-        <?php include("./template/nav.php"); ?>        
+        <?php include("./template/nav.php"); ?>
         
         <div class="container">
-			<br>
-            <h2>Our success stories.</h2>
-			<p> We love to see projects succeed through our platform. <br>
-				Here are the list of projects that have met and exceeded their own fund goals.</p>
-			<br>
+            <br>
+            <h1>Your advertised projects</h1>
+            <br>
             
             <?php include("./template/project_search.php"); ?>
-			<?php
+            
+            <?php
 				// Retrieving projects from DB
                 // sort by amount_funded by default in descending order
                 if(!isset($_GET['order'])) {
@@ -46,33 +46,45 @@
 				else {
 					$search = $_GET['search_field'];
 				}
-                $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
-					FROM projects 
-					WHERE amount_funded >= funding_sought
-                    AND (UPPER(title) LIKE UPPER('%$search%')
-                    OR UPPER(keywords) LIKE UPPER('%$search%'))
-					ORDER BY $sort $order";
+				
+                //check if user even has projects advertised
+                $query = "SELECT * FROM projects WHERE advertiser = '$_SESSION[userid]'";
+                $result = pg_query($db, $query);
+                
+                if(pg_num_rows($result) == 0) {
+                    $advertisedNothing = true;
+                }
+                else {
+                    $advertisedNothing = false;
+                }
+                
+                if(!$advertisedNothing) {
+                    $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
+                        FROM projects 
+                        WHERE advertiser = '$_SESSION[userid]'
+                        AND (UPPER(title) LIKE UPPER('%$search%')
+                        OR UPPER(keywords) LIKE UPPER('%$search%'))
+                        ORDER BY $sort $order";
                     
-                    
-				$result = pg_query($db, $query);
+                    $result = pg_query($db, $query);
+                }
 			?>
             
-			<?php include ('./template/navSort.php'); ?>
-			<?php include('./template/project_table.php'); ?>
+             <!-- Display information from Database in table form -->
+            <?php include("./template/navSort.php"); ?>
+            <?php include("./template/project_table.php"); ?>
             
-            <?php
-                if(pg_num_rows($result) == 0) {
-                    if($search == null) {
-                        echo "There are no successfully funded projects :(";
-                    }
-                    else {
-                        echo "Your search '".$search."' returned with nothing! Try something else.";
-                    }
+           <?php
+                if($advertisedNothing) {
+                    echo "Looks like you have not advertised anything!";
+                }
+                else if(pg_num_rows($result) == 0) {
+                    echo "Your search '".$search."' returned with nothing! Try something else.";
                 }
             ?>
         </div>
     </body>
-    
+
     <!-- Modal -->
     <?php include("./template/project_modal.php"); ?>
     

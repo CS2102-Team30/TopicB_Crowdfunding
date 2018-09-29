@@ -23,6 +23,8 @@
             <li class="nav-item <?php if($sort == "amount_funded") {?>active<?php }?>">
 				<a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=amount_funded<?php if($curFileName == "main.php") { echo "&search_field=".$search; }?>"><?php echo $project_columns['amount_funded'];?></a>
             </li>
+        </ul>
+        <ul class="navbar-nav">
             <li class="nav-item <?php if($order == "asc") {?>active<?php }?>">
                 <a class="nav-link" href="./<?php echo $curFileName;?>?order=asc&sort=<?php echo $sort; if($curFileName == "main.php") { echo "&search_field=".$search; }?>">Ascending</a>
             </li>

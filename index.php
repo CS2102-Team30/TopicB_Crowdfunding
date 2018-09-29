@@ -53,7 +53,7 @@
                     if (isset($_POST['login_submit'])) {
                         $query = "SELECT * FROM users WHERE userid='$_POST[userid]'";
                         $result = pg_query($db, $query);
-                        if (!$result) {
+                        if (pg_num_rows($result) == 0) {
                             echo "Username not inside database!";
                         }
                         else {

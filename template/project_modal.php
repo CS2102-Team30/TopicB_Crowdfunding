@@ -37,9 +37,9 @@
                 
                 <form id="submit-funding" method="POST" action="./php_funcs/process_fund.php">
                     <div class="form-group row">
-                        <label for="fund" style="padding-right: 0" class="col-lg-3 col-form-label text-right">Fund them! $</label>
+                        <label for="fund" class="col-lg-3 col-form-label text-right">Fund them! $</label>
                         <div class="col-lg-4">
-                            <input name="amount" style="padding-left: 1%" class="form-control" placeholder="amount" type="number" min="1" max = "2147483647" required />
+                            <input name="amount" class="form-control" placeholder="amount" type="number" min="1" max = "2147483647" required />
                         </div>
                         <input name="projectid" type="hidden" id="projectid" value="" required />
                         <div class="col-lg-2">
