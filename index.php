@@ -58,12 +58,12 @@
                         }
                         else {
                             $row = pg_fetch_assoc($result);
-                            if ($_POST[password] != $row[password]) {
+                            if ($_POST['password'] != $row['password']) {
                                 echo "Wrong password!";
                             }
                             else {
-                                $_SESSION[userid] = $row[userid];
-                                $_SESSION[isadmin] = $row[isadmin];
+                                $_SESSION['userid'] = $row[userid];
+                                $_SESSION['isadmin'] = $row[isadmin];
 								header("Location: main.php");
                             }
                         }
