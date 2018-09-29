@@ -22,7 +22,6 @@
 				Here are the list of projects that have met and exceeded their own fund goals.</p>
 			<br>
             
-            <?php include("./template/project_search.php"); ?>
 			<?php
 				// Retrieving projects from DB
                 // sort by amount_funded by default in descending order
@@ -57,6 +56,7 @@
 				$result = pg_query($db, $query);
 			?>
             
+            <?php include("./template/project_search.php"); ?>
 			<?php include ('./template/navSort.php'); ?>
 			<?php include('./template/project_table.php'); ?>
             

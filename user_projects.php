@@ -21,8 +21,6 @@
             <h1>Your advertised projects</h1>
             <br>
             
-            <?php include("./template/project_search.php"); ?>
-            
             <?php
 				// Retrieving projects from DB
                 // sort by amount_funded by default in descending order
@@ -69,7 +67,8 @@
                     $result = pg_query($db, $query);
                 }
 			?>
-            
+        
+            <?php include("./template/project_search.php"); ?>
              <!-- Display information from Database in table form -->
             <?php include("./template/navSort.php"); ?>
             <?php include("./template/project_table.php"); ?>

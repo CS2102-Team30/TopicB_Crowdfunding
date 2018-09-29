@@ -20,7 +20,6 @@
             <h2>Creative projects coming to life.</h2>
 			<p> Here are the list of all projects.</p>
             <br>
-            <?php include("./template/project_search.php"); ?>
             
 			<?php
 				// Retrieving projects from DB
@@ -54,6 +53,7 @@
 				$result = pg_query($db, $query);
 			?>
             
+            <?php include("./template/project_search.php"); ?>
 			<?php include ('./template/navSort.php'); ?>
 			<?php include('./template/project_table.php'); ?>		
             
