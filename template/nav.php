@@ -13,6 +13,12 @@
             <li class="nav-item <?php if ($curFileName == "main.php") {?>active<?php }?>">
                 <a class="nav-link" href="main.php">Home</a>
             </li>
+			<li class="nav-item <?php if ($curFileName == "funded.php") {?>active<?php }?>">
+                <a class="nav-link" href="funded.php">Successes</a>
+            </li>
+			<li class="nav-item <?php if ($curFileName == "search.php") {?>active<?php }?>">
+                <a class="nav-link" href="search.php">Search</a>
+            </li>
             <li class="nav-item <?php if ($curFileName == "user.php") {?>active<?php }?>">
                 <a class="nav-link" href="user.php">Your projects/funds</a>
             </li>

@@ -17,32 +17,28 @@
         
         <div class="container">
 			<br>
-            <h2>Creative projects coming to life.</h2>
-			<p> Here are the list of all projects.</p>
-			<br>
+            <h2>Can't find what you're looking for?</h2>
+			<p> Don't worry, we got you covered.</p>
+			<form action="search.php" method="POST">
+				<label for="search_field" class="col-lg-1 col-form-label">Search: </label>
+				<input name="search_field" class="form-control" placeholder="Any relevant keywords" required/>
+				<br>
+				<div class="text-center">
+					<button class="btn btn-primary" type="submit" name="search">Search</button>
+				</div>
+			</form>
+			<br> 
 			<?php
-				// Retrieving projects from DB
-                //sort by amount_funded by default in descending order
-                if(!isset($_GET['order'])) {
-                    $order = "desc";
-                }
-                else {
-                    $order = $_GET['order'];
-                }
-                        
-                if(!isset($_GET['sort'])) {
-                    $sort = 'amount_funded';
-                }
-                else {
-                    $sort = $_GET['sort'];
-                }
-                        
-                $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects ORDER BY $sort $order";
-				$result = pg_query($db, $query);
+				if (isset($_POST['search'])) {
+					//Searches title and keywords, Finds any values that have "word" in any position, Case-insensitive
+					$result = pg_query("SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
+						FROM projects
+						WHERE UPPER(title) LIKE UPPER('%$_POST[search_field]%')
+						OR UPPER(keywords) LIKE UPPER('%$_POST[search_field]%')");
+				}
 			?>
             
-			<?php include ('./template/navSort.php'); ?>
-			<?php include('./template/project_table.php'); ?>		
+			<?php include('./template/project_table.php'); ?>
         </div>
     </body>
     
