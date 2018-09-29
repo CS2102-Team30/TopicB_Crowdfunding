@@ -20,7 +20,7 @@
                 <br>
             </div>
             
-            <form action="account.php" method="POST">
+            <form action="settings.php" method="POST">
                 <div class="form-group row">
                     <div class="col-lg-3"></div>
                     <label for="change_password" class="col-lg-2 col-form-label text-right">New password: </label>
@@ -40,11 +40,11 @@
                     include_once('./php_funcs/connectDB.php');
                     
                     if (isset($_POST['changepwd_submit'])) {
-                        $query = "UPDATE users SET password = " + $_POST['change_password'] + " WHERE userid = " + $_SESSION['userid'];
+                        $query = "UPDATE users SET password = '". $_POST['change_password'] ."' WHERE userid = '" .$_SESSION['userid']."'";
                         $result = pg_query($db, $query);
                         if (!$result) {
                             echo "Failed to change password.";
-                        }
+						}
                         else {
                             echo "Password updated!";
                         }
