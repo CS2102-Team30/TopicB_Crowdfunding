@@ -10,17 +10,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item <?php if ($curFileName == "main.php") {?>active<?php }?>">
-                <a class="nav-link" href="main.php">Home</a>
-            </li>
-			<li class="nav-item <?php if ($curFileName == "funded.php") {?>active<?php }?>">
-                <a class="nav-link" href="funded.php">Successes</a>
+            <li class="nav-item dropdown <?php if ($curFileName == "main.php" || $curFileName == "funded.php") {?>active<?php }?>">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMain" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All projects</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMain">
+                    <a class="dropdown-item" href="main.php">Home</a>
+                    <a class="dropdown-item" href="funded.php">Successes</a>
+                </div>
             </li>
 			<li class="nav-item <?php if ($curFileName == "search.php") {?>active<?php }?>">
                 <a class="nav-link" href="search.php">Search</a>
             </li>
-            <li class="nav-item <?php if ($curFileName == "user.php") {?>active<?php }?>">
-                <a class="nav-link" href="user.php">Your projects/funds</a>
+            <li class="nav-item dropdown <?php if ($curFileName == "user.php") {?>active<?php }?>">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['userid'];?></a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                    <a class="dropdown-item" href="user.php">Your Projects</a>
+                    <a class="dropdown-item" href="#">Your Fundings(Not Available)</a>
+                </div>
             </li>
             <li class="nav-item <?php if ($curFileName == "add_project.php") {?>active<?php }?>">
                 <a class="nav-link" href="add_project.php">Start a project</a>
