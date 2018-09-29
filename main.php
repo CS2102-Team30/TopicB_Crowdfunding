@@ -19,6 +19,14 @@
 			<br>
             <h2>Creative projects coming to life.</h2>
 			<p> Here are the list of all projects.</p>
+			<form action="main.php" method="GET">
+				<label for="search_field" class="col-lg-1 col-form-label">Search: </label>
+				<input name="search_field" class="form-control" placeholder="Any relevant keywords" required/>
+				<br>
+				<div class="text-center">
+					<button class="btn btn-primary" type="submit">Search</button>
+				</div>
+			</form>
 			<br>
 			<?php
 				// Retrieving projects from DB
@@ -36,8 +44,19 @@
                 else {
                     $sort = $_GET['sort'];
                 }
-                        
-                $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid FROM projects ORDER BY $sort $order";
+                
+				if (!isset($_GET['search_field'])) {
+					$search = null;
+				}
+				else {
+					$search = $_GET['search_field'];
+				}
+				
+                $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
+					FROM projects 
+					WHERE UPPER(title) LIKE UPPER('%$search%')
+					OR UPPER(keywords) LIKE UPPER('%$search%') 
+					ORDER BY $sort $order";
 				$result = pg_query($db, $query);
 			?>
             

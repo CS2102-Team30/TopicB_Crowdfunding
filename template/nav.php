@@ -17,9 +17,6 @@
                     <a class="dropdown-item" href="funded.php">Successes</a>
                 </div>
             </li>
-			<li class="nav-item <?php if ($curFileName == "search.php") {?>active<?php }?>">
-                <a class="nav-link" href="search.php">Search</a>
-            </li>
             <li class="nav-item dropdown <?php if ($curFileName == "user.php") {?>active<?php }?>">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['userid'];?></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
