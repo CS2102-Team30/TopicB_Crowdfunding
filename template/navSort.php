@@ -1,6 +1,8 @@
 <?php 
     //initialising associative array
     $project_columns = array("advertiser" => "Advertiser", "projectid" => "Project ID", "title" => "Title", "description" => "Description", "start_date" => "Start Date", "duration" => "Duration", "keywords" => "Keywords", "funding_sought" => "Funding Sought", "amount_funded" => "Amount Funded");
+    
+    $curFileName = basename($_SERVER['PHP_SELF']);
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-brand">Sort by:</div>
@@ -10,26 +12,23 @@
     <div class="collapse navbar-collapse" id="navbarSort">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item <?php if($sort == "title") {?>active<?php }?>">
-                <a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=<?php echo $order;?>&sort=title"><?php echo$project_columns['title'];?></a>
+                <a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=title<?php if($curFileName == "search.php") { echo "&search_field=".$search; }?>"><?php echo $project_columns['title'];?></a>
             </li>
            <li class="nav-item <?php if($sort == "advertiser") {?>active<?php }?>">
-                <a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=<?php echo $order;?>&sort=advertiser"><?php echo $project_columns['advertiser'];?></a>
+                <a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=advertiser<?php if($curFileName == "search.php") { echo "&search_field=".$search; }?>"><?php echo $project_columns['advertiser'];?></a>
             </li>
             <li class="nav-item <?php if($sort == "funding_sought") {?>active<?php }?>">
-                <a  class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=<?php echo $order;?>&sort=funding_sought"><?php echo $project_columns['funding_sought'];?></a>
+                <a  class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=funding_sought<?php if($curFileName == "search.php") { echo "&search_field=".$search; }?>"><?php echo $project_columns['funding_sought'];?></a>
             </li>
             <li class="nav-item <?php if($sort == "amount_funded") {?>active<?php }?>">
-				<a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=<?php echo $order;?>&sort=amount_funded"><?php echo $project_columns['amount_funded']?></a>
+				<a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=amount_funded<?php if($curFileName == "search.php") { echo "&search_field=".$search; }?>"><?php echo $project_columns['amount_funded'];?></a>
             </li>
             <li class="nav-item <?php if($order == "asc") {?>active<?php }?>">
-                <a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=asc&sort=<?php echo $sort;?>">Ascending</a>
+                <a class="nav-link" href="./<?php echo $curFileName;?>?order=asc&sort=<?php echo $sort; if($curFileName == "search.php") { echo "&search_field=".$search; }?>">Ascending</a>
             </li>
             <li class="nav-item <?php if($order == "desc") {?>active<?php }?>">
-                <a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=desc&sort=<?php echo $sort;?>">Descending</a>
+                <a class="nav-link" href="./<?php echo $curFileName;?>?order=desc&sort=<?php echo $sort; if($curFileName == "search.php") { echo "&search_field=".$search; }?>">Descending</a>
             </li>
-			<li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == "search.php") {?>active<?php }?>">
-				<a class="nav-link" href="./search.php?search_field=<?php echo $search?>&order=<?php echo $order?>&sort=<?php echo $sort?>"></a>
-			</li>
         </ul>
     </div>
 </nav>

@@ -24,7 +24,7 @@
 				<input name="search_field" class="form-control" placeholder="Any relevant keywords" required/>
 				<br>
 				<div class="text-center">
-					<button class="btn btn-primary" type="submit" name="search">Search</button>
+					<button class="btn btn-primary" type="submit">Search</button>
 				</div>
 			</form>
 			<br> 
