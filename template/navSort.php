@@ -10,23 +10,26 @@
     <div class="collapse navbar-collapse" id="navbarSort">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item <?php if($sort == "title") {?>active<?php }?>">
-                <a class="nav-link" href="./main.php?order=<?php echo $order;?>&sort=title"><?php echo$project_columns['title'];?></a>
+                <a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=<?php echo $order;?>&sort=title"><?php echo$project_columns['title'];?></a>
             </li>
            <li class="nav-item <?php if($sort == "advertiser") {?>active<?php }?>">
-                <a class="nav-link" href="./main.php?order=<?php echo $order;?>&sort=advertiser"><?php echo $project_columns['advertiser'];?></a>
+                <a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=<?php echo $order;?>&sort=advertiser"><?php echo $project_columns['advertiser'];?></a>
             </li>
             <li class="nav-item <?php if($sort == "funding_sought") {?>active<?php }?>">
-                <a  class="nav-link" href="./main.php?order=<?php echo $order;?>&sort=funding_sought"><?php echo $project_columns['funding_sought'];?></a>
+                <a  class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=<?php echo $order;?>&sort=funding_sought"><?php echo $project_columns['funding_sought'];?></a>
             </li>
             <li class="nav-item <?php if($sort == "amount_funded") {?>active<?php }?>">
-            <a class="nav-link" href="./main.php?order=<?php echo $order;?>&sort=amount_funded"><?php echo $project_columns['amount_funded']?></a>
+				<a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=<?php echo $order;?>&sort=amount_funded"><?php echo $project_columns['amount_funded']?></a>
             </li>
             <li class="nav-item <?php if($order == "asc") {?>active<?php }?>">
-                <a class="nav-link" href="./main.php?order=asc&sort=<?php echo $sort;?>">Ascending</a>
+                <a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=asc&sort=<?php echo $sort;?>">Ascending</a>
             </li>
             <li class="nav-item <?php if($order == "desc") {?>active<?php }?>">
-                <a class="nav-link" href="./main.php?order=desc&sort=<?php echo $sort;?>">Descending</a>
+                <a class="nav-link" href="./<?php echo basename($_SERVER['PHP_SELF']);?>?order=desc&sort=<?php echo $sort;?>">Descending</a>
             </li>
+			<li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == "search.php") {?>active<?php }?>">
+				<a class="nav-link" href="./search.php?search_field=<?php echo $search?>&order=<?php echo $order?>&sort=<?php echo $sort?>"></a>
+			</li>
         </ul>
     </div>
 </nav>

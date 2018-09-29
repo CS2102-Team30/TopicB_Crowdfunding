@@ -19,7 +19,7 @@
 			<br>
             <h2>Can't find what you're looking for?</h2>
 			<p> Don't worry, we got you covered.</p>
-			<form action="search.php" method="POST">
+			<form action="search.php" method="GET">
 				<label for="search_field" class="col-lg-1 col-form-label">Search: </label>
 				<input name="search_field" class="form-control" placeholder="Any relevant keywords" required/>
 				<br>
@@ -28,16 +28,39 @@
 				</div>
 			</form>
 			<br> 
-			<?php
-				if (isset($_POST['search'])) {
-					//Searches title and keywords, Finds any values that have "word" in any position, Case-insensitive
-					$result = pg_query("SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
-						FROM projects
-						WHERE UPPER(title) LIKE UPPER('%$_POST[search_field]%')
-						OR UPPER(keywords) LIKE UPPER('%$_POST[search_field]%')");
+            <?php
+				// Retrieving projects from DB
+                //sort by amount_funded by default in descending order
+                if(!isset($_GET['order'])) {
+                    $order = "desc";
+                }
+                else {
+                    $order = $_GET['order'];
+                }
+                        
+                if(!isset($_GET['sort'])) {
+                    $sort = 'amount_funded';
+                }
+                else {
+                    $sort = $_GET['sort'];
+                }
+				
+				if (!isset($_GET['search_field'])) {
+					$search = null;
 				}
+				else {
+					$search = $_GET['search_field'];
+				}
+				
+                $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
+					FROM projects
+					WHERE UPPER(title) LIKE UPPER('%$search%')
+					OR UPPER(keywords) LIKE UPPER('%$search%')
+					ORDER BY $sort $order";
+				$result = pg_query($db, $query);
 			?>
             
+			<?php include ('./template/navSort.php'); ?>
 			<?php include('./template/project_table.php'); ?>
         </div>
     </body>
