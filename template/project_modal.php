@@ -49,8 +49,10 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="deletebutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="delete">Delete</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<?php if($_SERVER['PHP_SELF'] == '/user.php' || $_SESSION[isadmin] == "t") { ?>
+					<button id="deletebutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="delete">Delete</button>
+                <?php } ?>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>  
     </div>
