@@ -21,7 +21,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['userid'];?></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
                     <a class="dropdown-item" href="user_projects.php">Your Projects</a>
-                    <a class="dropdown-item" href="#">Your Fundings(Not Available)</a>
+                    <a class="dropdown-item" href="user_funded.php">Your Fundings</a>
                 </div>
             </li>
             <li class="nav-item <?php if ($curFileName == "add_project.php") {?>active<?php }?>">

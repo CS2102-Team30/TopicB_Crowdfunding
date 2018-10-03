@@ -12,7 +12,7 @@
     $result = pg_query($db, $query);
     
     $curTime = date("d/m/Y H:i:s");
-    $query = "INSERT INTO invest VALUES ('$curTime', '$userid', '$projectid', $add)";
+    $query = "INSERT INTO invest VALUES ('$userid', '$projectid', $add)";
     $result = pg_query($db, $query);
 
     header("Location: ../main.php");
