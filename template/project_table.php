@@ -8,6 +8,14 @@
 			</div>
 			<div class="card-body">
 				<?php echo "<p>" . "Advertised by: " . $row['advertiser'] . " | " . "Currently raised: " . "$". $row['amount_funded'] . "/" . "$" . $row['funding_sought'] . "</p>"; ?>
+				<?php
+					$query2 = "SELECT investor, projectid, amount FROM invest WHERE projectid = '$projectid' AND investor = '$_SESSION[userid]'";
+					$result2 = pg_query($db, $query2);
+					if (pg_num_rows($result2) == 1) {	// user invested in this project before
+						$row2 = pg_fetch_assoc($result2);
+						echo "<p>" . "You are currently funding " . "$" . $row2['amount'] . " in this project" . "</p>";
+					}
+				?>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal" 
 				data-description="<?php echo $row['description'];?>" data-title="<?php echo $row['title'];?>" data-startdate="<?php echo $row['start_date'];?>" data-duration="<?php echo $row['duration'];?>" data-projectid="<?php echo $row['projectid'];?>">
 					Find out more
