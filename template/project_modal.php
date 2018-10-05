@@ -39,13 +39,14 @@
                     <div class="form-group row">
                         <label for="fund" class="col-lg-3 col-form-label text-right">Fund them! $</label>
                         <div class="col-lg-4">
-                            <input name="amount" class="form-control" placeholder="amount" type="number" min="1" max = "2147483647" required />
+                            <input name="amount" class="form-control" placeholder="amount" type="number" min="0" max = "2147483647" required />
                         </div>
                         <input name="projectid" type="hidden" id="projectid" value="" required />
                         <div class="col-lg-2">
                             <button class="btn btn-primary" type="submit">Fund!</button>
                         </div>
                     </div>
+					<p>Note that the amount you enter will replace your previously submitted amount (if any). Enter $0 if you wish to remove your previously submitted amount.</p>
                 </form>
             </div>
             <div class="modal-footer">
