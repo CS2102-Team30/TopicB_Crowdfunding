@@ -22,6 +22,8 @@
             <br>
             
 			<?php
+                $counter = 0;
+                
 				// Retrieving projects from DB
                 // sort by amount_funded by default in descending order
                 if(!isset($_GET['order'])) {
@@ -49,13 +51,16 @@
 					FROM projects 
 					WHERE UPPER(title) LIKE UPPER('%$search%')
 					OR UPPER(keywords) LIKE UPPER('%$search%') 
-					ORDER BY $sort $order";
+					ORDER BY $sort $order
+                    LIMIT 10 OFFSET 0";
 				$result = pg_query($db, $query);
 			?>
             
             <?php include("./template/project_search.php"); ?>
 			<?php include ('./template/navSort.php'); ?>
-			<?php include('./template/project_table.php'); ?>		
+            <div id="results">
+                <?php include('./template/project_table.php'); ?>
+            </div>
             
             <?php
                 if(pg_num_rows($result) == 0) {
@@ -72,7 +77,7 @@
     
     <!-- Modal -->
     <?php include("./template/project_modal.php"); ?>
-    
+    <?php include("./php_funcs/load_jquery.php"); ?>
 	<script>
 		$("[data-modal-action=delete]").click(function (event) {
 			var button = $(event.target);
