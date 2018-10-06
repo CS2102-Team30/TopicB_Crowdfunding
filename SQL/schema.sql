@@ -17,10 +17,9 @@ CREATE TABLE projects (
 );
 
 CREATE TABLE invest (
-    invest_date TIMESTAMP NOT NULL,
-	investor VARCHAR(30) REFERENCES users(userid),
+    investor VARCHAR(30) REFERENCES users(userid),
 	projectid VARCHAR(23) REFERENCES projects(projectid) ON DELETE CASCADE,
-	PRIMARY KEY(invest_date, investor, projectid),
+	PRIMARY KEY(investor, projectid),
     amount INT NOT NULL
 );
 
