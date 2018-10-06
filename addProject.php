@@ -7,7 +7,7 @@
     <body>
         <?php
             //check if logged out
-            include_once("./php_funcs/checkLogOut.php");
+            include_once("./phpFunctions/checkLogOut.php");
         ?>
         
         <!-- Nav bar -->
@@ -20,7 +20,7 @@
                 <br>
             </div>
 
-            <form action="./php_funcs/process_add.php" method="POST">
+            <form action="phpFunctions/processAdd.php" method="POST">
                 <div class="form-group row">
 					<div class="col-lg-1"></div>
                     <label for="title" class="col-lg-2 col-form-label">Project Title:</label>

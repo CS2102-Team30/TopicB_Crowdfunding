@@ -5,7 +5,7 @@
             var counter = $(this).data("counter");
             var order = "<?php echo $order ?>";
             var sort = "<?php echo $sort ?>";
-            var page = "<?php echo $_SERVER['PHP_SELF'] ?>";
+            var page = "<?php echo basename($_SERVER['PHP_SELF']) ?>";
             <?php 
                 if($search != null) {
                     echo 'var search_field ="'.$search.'";';
@@ -16,7 +16,7 @@
             ?>
             $('#btn_more').html("Loading...");
             $.ajax( {
-                url:"./php_funcs/load.php",
+                url:"./phpFunctions/load.php",
                 method:"POST",
                 data:{counter:counter,
                       search_field:search_field,

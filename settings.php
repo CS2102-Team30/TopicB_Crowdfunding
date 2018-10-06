@@ -7,7 +7,7 @@
     <body>
         <?php
             //check if logged out
-            include_once("./php_funcs/checkLogOut.php");
+            include_once("./phpFunctions/checkLogOut.php");
         ?>
         
         <!-- Nav bar -->
@@ -37,7 +37,7 @@
             <div class="text-center">
                 <?php
                     //log in to db
-                    include_once('./php_funcs/connectDB.php');
+                    include_once('./phpFunctions/connectDB.php');
                     
                     if (isset($_POST['changepwd_submit'])) {
                         $query = "UPDATE users SET password = '". $_POST['change_password'] ."' WHERE userid = '" .$_SESSION['userid']."'";

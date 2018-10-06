@@ -7,9 +7,9 @@
     <body>       
         <?php
             //check if logged out
-            include_once("./php_funcs/checkLogOut.php");
+            include_once("./phpFunctions/checkLogOut.php");
             //log in to db
-            include_once('./php_funcs/connectDB.php');
+            include_once('./phpFunctions/connectDB.php');
         ?>
         
         <!-- Nav bar -->
@@ -56,10 +56,10 @@
 				$result = pg_query($db, $query);
 			?>
             
-            <?php include("./template/project_search.php"); ?>
+            <?php include("./template/projectSearch.php"); ?>
 			<?php include ('./template/navSort.php'); ?>
             <div id="results">
-                <?php include('./template/project_table.php'); ?>
+                <?php include('./template/projectTable.php'); ?>
             </div>
             
             <?php
@@ -76,7 +76,7 @@
     </body>
     
     <!-- Modal -->
-    <?php include("./template/project_modal.php"); ?>
-	<?php include("./template/edit_modal.php"); ?>
-    <?php include("./php_funcs/load_jquery.php"); ?>
+    <?php include("./template/projectModal.php"); ?>
+	<?php include("./template/editModal.php"); ?>
+    <?php include("./phpFunctions/loadJquery.php"); ?>
 </html>

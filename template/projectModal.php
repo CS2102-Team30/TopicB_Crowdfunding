@@ -37,7 +37,7 @@
                 <p id="startdate"/>
                 <p id="duration"/>
                 
-                <form id="submit-funding" method="POST" action="./php_funcs/process_fund.php">
+                <form id="submit-funding" method="POST" action="./phpFunctions/processFund.php">
                     <div class="form-group row">
                         <label for="fund" class="col-lg-3 col-form-label text-right">Fund them! $</label>
                         <div class="col-lg-4">
@@ -54,7 +54,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-				<?php if($_SERVER['PHP_SELF'] == '/user_projects.php' || $_SESSION['isadmin'] == "t") { ?>
+				<?php if($_SERVER['PHP_SELF'] == '/userProjects.php' || $_SESSION['isadmin'] == "t") { ?>
 					<button id="deletebutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="delete">Delete</button>
 					<button id="editbutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="edit" data-dismiss="modal">Edit</button>
                 <?php } ?>
@@ -71,7 +71,7 @@
 
 			var form = document.createElement("form");
 			form.setAttribute("method", "post");
-			form.setAttribute("action", "php_funcs/process_delete.php");
+			form.setAttribute("action", "phpFunctions/processDelete.php");
 
 			var hiddenField = document.createElement("input");
 			hiddenField.setAttribute("type", "hidden");

@@ -8,9 +8,9 @@
     <body>
         <?php
             //check if logged out
-            include_once("./php_funcs/checkLogOut.php");
+            include_once("./phpFunctions/checkLogOut.php");
             //log in to db
-            include_once('./php_funcs/connectDB.php');        
+            include_once('./phpFunctions/connectDB.php');
         ?>
         
         <!-- Nav bar -->
@@ -18,10 +18,10 @@
         
         <div class="container">
             <br>
-            <h1>Your advertised projects</h1>
+            <h1>Projects You Have Funded</h1>
             <br>
             
-			<?php
+            <?php
                 $counter = 0;
                 
 				// Retrieving projects from DB
@@ -47,49 +47,70 @@
 					$search = $_GET['search_field'];
 				}
 				
-                //check if user even has projects advertised
-                $query = "SELECT * FROM projects WHERE advertiser = '$_SESSION[userid]'";
+                //check if user even has funded projects
+                $query = "SELECT * FROM invest WHERE investor = '$_SESSION[userid]'";
                 $result = pg_query($db, $query);
-                
+
                 if(pg_num_rows($result) == 0) {
-                    $advertisedNothing = true;
+                    $fundedNothing = true;
                 }
                 else {
-                    $advertisedNothing = false;
+                    $fundedNothing = false;
                 }
-                
-                if(!$advertisedNothing) {
-                    $query = "SELECT * 
-                        FROM projects
-                        WHERE advertiser = '$_SESSION[userid]'
-                        AND (UPPER(title) LIKE UPPER('%$search%')
-                        OR UPPER(keywords) LIKE UPPER('%$search%')) 
+
+                if(!$fundedNothing) {
+                    $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded, p.funding_sought, p.description, p.projectid, i.amount 
+                        FROM projects p, invest i
+                        WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
+                        AND (UPPER(p.title) LIKE UPPER('%$search%')
+                        OR UPPER(p.keywords) LIKE UPPER('%$search%'))
                         ORDER BY $sort $order
                         LIMIT 10 OFFSET 0";
+                    
                     $result = pg_query($db, $query);
                 }
 			?>
         
-            <?php include("./template/project_search.php"); ?>
+            <?php include("./template/projectSearch.php"); ?>
              <!-- Display information from Database in table form -->
             <?php include("./template/navSort.php"); ?>
             <div id="results">
-                <?php include('./template/project_table.php'); ?>
+                <?php include('./template/projectTable.php'); ?>
             </div>
             
-           <?php
-                if($advertisedNothing) {
-                    echo "Looks like you have not advertised anything!";
+            <?php
+                if($fundedNothing) {
+                    echo "Looks like you have not funded anything!";
                 }
                 else if(pg_num_rows($result) == 0) {
                     echo "Your search '".$search."' returned with nothing! Try something else.";
                 }
             ?>
+
         </div>
     </body>
 
     <!-- Modal -->
-    <?php include("./template/project_modal.php"); ?>
-    <?php include("./template/edit_modal.php"); ?>
-	<?php include("./php_funcs/load_jquery.php"); ?>
+    <?php include("./template/projectModal.php"); ?>
+    <?php include("./phpFunctions/loadJquery.php"); ?>
+    
+	<script>
+		$("[data-modal-action=delete]").click(function (event) {
+			var button = $(event.target);
+			var id = button.val();
+			$("#projectModal").modal("hide");
+
+			var form = document.createElement("form");
+			form.setAttribute("method", "post");
+			form.setAttribute("action", "php_funcs/process_delete.php");
+
+			var hiddenField = document.createElement("input");
+			hiddenField.setAttribute("type", "hidden");
+			hiddenField.setAttribute("name", "deleteid");
+			hiddenField.setAttribute("value", id);
+			form.appendChild(hiddenField);
+			document.body.appendChild(form);
+			form.submit();	
+		});
+	</script>
 </html>
