@@ -47,7 +47,7 @@
 				else {
 					$search = $_GET['search_field'];
 				}
-                $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
+                $query = "SELECT * 
 					FROM projects 
 					WHERE amount_funded >= funding_sought
                     AND (UPPER(title) LIKE UPPER('%$search%')

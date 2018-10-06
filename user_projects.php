@@ -59,7 +59,7 @@
                 }
                 
                 if(!$advertisedNothing) {
-                    $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
+                    $query = "SELECT * 
                         FROM projects
                         WHERE advertiser = '$_SESSION[userid]'
                         AND (UPPER(title) LIKE UPPER('%$search%')
@@ -90,25 +90,6 @@
 
     <!-- Modal -->
     <?php include("./template/project_modal.php"); ?>
-    <?php include("./php_funcs/load_jquery.php"); ?>
-    
-	<script>
-		$("[data-modal-action=delete]").click(function (event) {
-			var button = $(event.target);
-			var id = button.val();
-			$("#projectModal").modal("hide");
-
-			var form = document.createElement("form");
-			form.setAttribute("method", "post");
-			form.setAttribute("action", "php_funcs/process_delete.php");
-
-			var hiddenField = document.createElement("input");
-			hiddenField.setAttribute("type", "hidden");
-			hiddenField.setAttribute("name", "deleteid");
-			hiddenField.setAttribute("value", id);
-			form.appendChild(hiddenField);
-			document.body.appendChild(form);
-			form.submit();	
-		});
-	</script>
+    <?php include("./template/edit_modal.php"); ?>
+	<?php include("./php_funcs/load_jquery.php"); ?>
 </html>

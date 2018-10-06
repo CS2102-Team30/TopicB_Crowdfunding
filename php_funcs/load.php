@@ -30,14 +30,14 @@
     }
 
     if($page == '/main.php') {
-        $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
+        $query = "SELECT * 
             FROM projects 
             WHERE UPPER(title) LIKE UPPER('%$search%')
             OR UPPER(keywords) LIKE UPPER('%$search%') 
             ORDER BY $sort $order
             LIMIT 10 OFFSET $counter";
     } else if($page == '/user_projects.php') {
-        $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
+        $query = "SELECT * 
             FROM projects
             WHERE advertiser = '$_SESSION[userid]'
             AND (UPPER(title) LIKE UPPER('%$search%')
@@ -45,7 +45,7 @@
             ORDER BY $sort $order
             LIMIT 10 OFFSET 0";
     } else if($page == '/funded.php') {
-        $query = "SELECT title, advertiser, start_date, duration, amount_funded, funding_sought, description, projectid 
+        $query = "SELECT * 
             FROM projects 
             WHERE amount_funded >= funding_sought
             AND (UPPER(title) LIKE UPPER('%$search%')
