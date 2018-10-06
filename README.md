@@ -22,3 +22,7 @@
 3. Under 'method' column, change 'md5' to 'trust'
 - You can also do the above if you want to skip the process of verifying db password
 - Dont do this if there are any local users you can't trust: )
+# Setting up Test Data
+1. cd into .\SQL
+2. Run the following in order
+3. Run cleanDatabase.sql, schema.sql, users.sql, projects.sql, invest.sql, updateProjectFunding.sql
