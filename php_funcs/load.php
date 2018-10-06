@@ -51,6 +51,14 @@
             AND (UPPER(title) LIKE UPPER('%$search%')
             OR UPPER(keywords) LIKE UPPER('%$search%'))
             ORDER BY $sort $order";
+    } else if($page == "/user_funded.php") {
+        $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded,  p.funding_sought, p.description, p.projectid, i.amount 
+            FROM projects p, invest i
+            WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
+            AND (UPPER(p.title) LIKE UPPER('%$search%')
+            OR UPPER(p.keywords) LIKE UPPER('%$search%'))
+            ORDER BY $sort $order
+            LIMIT 10 OFFSET 0";
     }
     
     $result = pg_query($db, $query);
