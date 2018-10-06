@@ -83,7 +83,7 @@
                     echo "Looks like you have not funded anything!";
                 }
                 else if(pg_num_rows($result) == 0) {
-                    echo "Your search '".$search."' returned with nothing! Try something else.";
+                    echo "We can't find any projects matching your search '".$search."'. Try something else instead.";
                 }
             ?>
 

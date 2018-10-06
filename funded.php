@@ -17,7 +17,7 @@
         
         <div class="container">
 			<br>
-            <h2>Our success stories.</h2>
+            <h1>Our success stories.</h1>
 			<p> We love to see projects succeed through our platform. <br>
 				Here are the list of projects that have met and exceeded their own fund goals.</p>
 			<br>
@@ -70,7 +70,7 @@
                         echo "There are no successfully funded projects :(";
                     }
                     else {
-                        echo "Your search '".$search."' returned with nothing! Try something else.";
+                        echo "We can't find any projects matching your search '".$search."'. Try something else instead.";
                     }
                 }
             ?>

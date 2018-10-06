@@ -18,7 +18,7 @@
         
         <div class="container">
             <br>
-            <h1>Your advertised projects</h1>
+            <h1>Your Advertised Projects</h1>
             <br>
             
 			<?php
@@ -82,7 +82,7 @@
                     echo "Looks like you have not advertised anything!";
                 }
                 else if(pg_num_rows($result) == 0) {
-                    echo "Your search '".$search."' returned with nothing! Try something else.";
+                    echo "We can't find any projects matching your search '".$search."'. Try something else instead.";
                 }
             ?>
         </div>

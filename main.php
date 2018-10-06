@@ -17,8 +17,8 @@
         
         <div class="container">
 			<br>
-            <h2>Creative projects coming to life.</h2>
-			<p> Here are the list of all projects.</p>
+            <h1>Creative projects coming to life.</h1>
+			<p> Browse all projects here.</p>
             <br>
             
 			<?php
@@ -65,10 +65,10 @@
             <?php
                 if(pg_num_rows($result) == 0) {
                     if($search == null) {
-                        echo "There does not seem to be anything inside the DB";
+                        echo "There does not seem to be any projects inside the database.";
                     }
                     else {
-                        echo "Your search '".$search."' returned with nothing! Try something else.";
+                        echo "We can't find any projects matching your search '".$search."'. Try something else instead.";
                     }
                 }
             ?>

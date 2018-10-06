@@ -69,11 +69,11 @@
             <?php
                 if(isset($_SESSION['submit_state'])) {
                     if ($_SESSION['submit_state'] == "failed") {
-                        echo "Project submission failed, please try again";
+                        echo "Project submission failed, please try again.";
                         $_SESSION['submit_state'] = "";
                     }
                     else if ($_SESSION['submit_state'] == "success"){
-                        echo "Project successfully submitted";
+                        echo "Project successfully submitted!";
                         $_SESSION['submit_state'] = "";
                     }else{}
                 }
