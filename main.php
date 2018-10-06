@@ -7,9 +7,9 @@
     <body>       
         <?php
             //check if logged out
-            include_once("./php_funcs/checkLogOut.php");
+            include_once("./phpFunctions/checkLogOut.php");
             //log in to db
-            include_once('./php_funcs/connectDB.php');
+            include_once('./phpFunctions/connectDB.php');
         ?>
         
         <!-- Nav bar -->
@@ -17,8 +17,8 @@
         
         <div class="container">
 			<br>
-            <h2>Creative projects coming to life.</h2>
-			<p> Here are the list of all projects.</p>
+            <h1>Creative projects coming to life.</h1>
+			<p> Browse all projects here.</p>
             <br>
             
 			<?php
@@ -56,19 +56,19 @@
 				$result = pg_query($db, $query);
 			?>
             
-            <?php include("./template/project_search.php"); ?>
+            <?php include("./template/projectSearch.php"); ?>
 			<?php include ('./template/navSort.php'); ?>
             <div id="results">
-                <?php include('./template/project_table.php'); ?>
+                <?php include('./template/projectTable.php'); ?>
             </div>
             
             <?php
                 if(pg_num_rows($result) == 0) {
                     if($search == null) {
-                        echo "There does not seem to be anything inside the DB";
+                        echo "There does not seem to be any projects inside the database.";
                     }
                     else {
-                        echo "Your search '".$search."' returned with nothing! Try something else.";
+                        echo "We can't find any projects matching your search '".$search."'. Try something else instead.";
                     }
                 }
             ?>
@@ -76,7 +76,7 @@
     </body>
     
     <!-- Modal -->
-    <?php include("./template/project_modal.php"); ?>
-	<?php include("./template/edit_modal.php"); ?>
-    <?php include("./php_funcs/load_jquery.php"); ?>
+    <?php include("./template/projectModal.php"); ?>
+	<?php include("./template/editModal.php"); ?>
+    <?php include("./phpFunctions/loadJquery.php"); ?>
 </html>

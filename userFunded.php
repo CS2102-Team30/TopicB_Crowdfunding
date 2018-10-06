@@ -8,9 +8,9 @@
     <body>
         <?php
             //check if logged out
-            include_once("./php_funcs/checkLogOut.php");
+            include_once("./phpFunctions/checkLogOut.php");
             //log in to db
-            include_once('./php_funcs/connectDB.php');        
+            include_once('./phpFunctions/connectDB.php');
         ?>
         
         <!-- Nav bar -->
@@ -71,11 +71,11 @@
                 }
 			?>
         
-            <?php include("./template/project_search.php"); ?>
+            <?php include("./template/projectSearch.php"); ?>
              <!-- Display information from Database in table form -->
             <?php include("./template/navSort.php"); ?>
             <div id="results">
-                <?php include('./template/project_table.php'); ?>
+                <?php include('./template/projectTable.php'); ?>
             </div>
             
             <?php
@@ -83,7 +83,7 @@
                     echo "Looks like you have not funded anything!";
                 }
                 else if(pg_num_rows($result) == 0) {
-                    echo "Your search '".$search."' returned with nothing! Try something else.";
+                    echo "We can't find any projects matching your search '".$search."'. Try something else instead.";
                 }
             ?>
 
@@ -91,8 +91,8 @@
     </body>
 
     <!-- Modal -->
-    <?php include("./template/project_modal.php"); ?>
-    <?php include("./php_funcs/load_jquery.php"); ?>
+    <?php include("./template/projectModal.php"); ?>
+    <?php include("./phpFunctions/loadJquery.php"); ?>
     
 	<script>
 		$("[data-modal-action=delete]").click(function (event) {

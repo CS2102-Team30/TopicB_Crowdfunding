@@ -29,14 +29,14 @@
         $search = $_POST['search_field'];
     }
 
-    if($page == '/main.php') {
+    if($page == 'main.php') {
         $query = "SELECT * 
             FROM projects 
             WHERE UPPER(title) LIKE UPPER('%$search%')
             OR UPPER(keywords) LIKE UPPER('%$search%') 
             ORDER BY $sort $order
             LIMIT 10 OFFSET $counter";
-    } else if($page == '/user_projects.php') {
+    } else if($page == 'userProjects.php') {
         $query = "SELECT * 
             FROM projects
             WHERE advertiser = '$_SESSION[userid]'
@@ -44,14 +44,14 @@
             OR UPPER(keywords) LIKE UPPER('%$search%')) 
             ORDER BY $sort $order
             LIMIT 10 OFFSET 0";
-    } else if($page == '/funded.php') {
+    } else if($page == 'funded.php') {
         $query = "SELECT * 
             FROM projects 
             WHERE amount_funded >= funding_sought
             AND (UPPER(title) LIKE UPPER('%$search%')
             OR UPPER(keywords) LIKE UPPER('%$search%'))
             ORDER BY $sort $order";
-    } else if($page == "/user_funded.php") {
+    } else if($page == "userFunded.php") {
         $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded,  p.funding_sought, p.description, p.projectid, i.amount 
             FROM projects p, invest i
             WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
@@ -63,5 +63,5 @@
     
     $result = pg_query($db, $query);
     
-    include('../template/project_table.php');
+    include('../template/projectTable.php');
 ?>

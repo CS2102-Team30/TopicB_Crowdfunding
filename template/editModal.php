@@ -7,18 +7,18 @@
     });
 	 $(function () {
         $('#edit_project').on('submit', function (e) {
-          e.preventDefault();
-          $.ajax({
-            type: 'post',
-            url: './php_funcs/process_edit.php',
-            data: $('#edit_project').serialize(),
-            success: function () {
-              alert('Project Details Updated');
-			  location.reload();	
-			}
-          });
+            e.preventDefault();
+            $.ajax({
+                type: 'post',
+                url: './phpFunctions/processEdit.php',
+                data: $('#edit_project').serialize(),
+                success: function () {
+                    alert('Project Details Updated');
+			        location.reload();
+			    }
+            });
         });
-      });
+    });
 </script>
 <div id="editModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

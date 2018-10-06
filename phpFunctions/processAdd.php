@@ -16,5 +16,5 @@
         echo "Project successfully submitted";
 		$_SESSION['submit_state'] = "success";
 	}
-	header("Location: ../add_project.php");
+	header("Location: ../addProject.php");
 ?>

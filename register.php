@@ -8,9 +8,9 @@
     <body>
         <?php
             //check if logged in
-            include_once("./php_funcs/checkLogIn.php");
+            include_once("./phpFunctions/checkLogIn.php");
             //log in to db
-            include_once('./php_funcs/connectDB.php');
+            include_once('./phpFunctions/connectDB.php');
         ?>
         
         <!-- Header file -->
