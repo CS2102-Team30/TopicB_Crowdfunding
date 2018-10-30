@@ -16,12 +16,23 @@
 						$row2 = pg_fetch_assoc($result2);
 						echo "<p>" . "You are currently funding " . "$" . $row2['amount'] . " in this project" . "</p>";
 					}
+					
+					$query3 = "SELECT projectid, keyword FROM contains WHERE projectid = '$projectid'";
+					$result3 = pg_query($db, $query3);
+					$allkeywords = "";
+					while($row3 = pg_fetch_assoc($result3)) {
+						$allkeywords .= $row3['keyword'] . ",";
+					}
+					$allkeywords = rtrim($allkeywords, ",");
 				?>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal" 
 				data-description="<?php echo $row['description'];?>" data-title="<?php echo $row['title'];?>" data-startdate="<?php echo $row['start_date'];?>" data-duration="<?php echo $row['duration'];?>" 
 									data-projectid="<?php echo $row['projectid'];?>" data-funding="<?php echo $row['funding_sought'];?>">
 					Find out more
 				</button>
+			</div>
+			<div class="card-footer">
+				<?php echo "<p>" . "Keywords: " . $allkeywords; ?>
 			</div>
 		</div>
 		<br>
