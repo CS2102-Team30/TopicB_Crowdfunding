@@ -19,7 +19,7 @@
 				?>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal" 
 				data-description="<?php echo $row['description'];?>" data-title="<?php echo $row['title'];?>" data-startdate="<?php echo $row['start_date'];?>" data-duration="<?php echo $row['duration'];?>" 
-									data-projectid="<?php echo $row['projectid'];?>" data-funding="<?php echo $row['funding_sought'];?>" data-keywords="<?php echo $row['keywords'];?>">
+									data-projectid="<?php echo $row['projectid'];?>" data-funding="<?php echo $row['funding_sought'];?>">
 					Find out more
 				</button>
 			</div>

@@ -63,7 +63,6 @@
                         FROM projects p, invest i
                         WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
                         AND (UPPER(p.title) LIKE UPPER('%$search%')
-                        OR UPPER(p.keywords) LIKE UPPER('%$search%'))
                         ORDER BY $sort $order
                         LIMIT 10 OFFSET 0";
                     

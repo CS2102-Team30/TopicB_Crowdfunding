@@ -51,7 +51,6 @@
 					FROM projects 
 					WHERE amount_funded >= funding_sought
                     AND (UPPER(title) LIKE UPPER('%$search%')
-                    OR UPPER(keywords) LIKE UPPER('%$search%'))
 					ORDER BY $sort $order
                     LIMIT 10 OFFSET 0";
                     

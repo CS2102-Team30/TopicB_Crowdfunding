@@ -46,7 +46,7 @@
                 <div class="form-group row">
 					<label for="edit_description" class="col-lg-4 col-form-label">Project Description:</label>
                     <div class="col-lg-8">
-                        <textarea name="edit_description" id="edit_description" class="form-control" placeholder="Description" rows="5" required></textarea>
+                        <textarea name="edit_description" id="edit_description" class="form-control" placeholder="Description" rows="3" required></textarea>
                     </div>            
                 </div>
                 <div class="form-group row">
@@ -62,10 +62,33 @@
                     </div>
                 </div>
                 <div class="form-group row">
-					<label for="edit_keywords" class="col-lg-4 col-form-label">Keywords</label>
-                    <div class="col-lg-8">
-                        <input name="edit_keywords" id="edit_keywords" class="form-control" placeholder="Keywords"/>
+					<label for="edit_keywords" class="col-lg-4 col-form-label">Keywords:</label>
+                    <div class="col-lg-4">
+                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Arts"/>
+                        <label class="form-check-label">Arts</label>
+                        <br>
+                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Tech"/>
+                        <label class="form-check-label">Tech</label>
+                        <br>
+                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Illustration"/>
+                        <label class="form-check-label">Illustration</label>
+                        <br>
+                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Games"/>
+                        <label class="form-check-label">Games</label>
                     </div>
+					<div class="col-lg-4">
+					    <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Food"/>
+                        <label class="form-check-label">Food</label>
+                        <br>
+                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Music"/>
+                        <label class="form-check-label">Music</label>
+                        <br>
+                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Publishing"/>
+                        <label class="form-check-label">Publishing</label>
+                        <br>
+                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Film"/>
+                        <label class="form-check-label">Film</label>
+					</div>
                 </div>
 				<div class="form-group text-center">
 					<button class="btn btn-primary" type="submit" id="editSubmit">Submit</button>

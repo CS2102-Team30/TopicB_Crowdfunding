@@ -50,7 +50,6 @@
                 $query = "SELECT * 
 					FROM projects 
 					WHERE UPPER(title) LIKE UPPER('%$search%')
-					OR UPPER(keywords) LIKE UPPER('%$search%') 
 					ORDER BY $sort $order
                     LIMIT 10 OFFSET 0";
 				$result = pg_query($db, $query);
