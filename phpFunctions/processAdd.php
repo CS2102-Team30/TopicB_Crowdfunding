@@ -6,15 +6,20 @@
     $projectid = uniqid('', true);
     $start_date = date("d/m/Y");
     $query = "INSERT INTO projects VALUES ('$_SESSION[userid]', '$projectid', '$_POST[title]', '$_POST[description]', 
-        '$start_date', '$_POST[duration]', '$_POST[keywords]', '$_POST[amount_sought]', '0')";
+        '$start_date', '$_POST[duration]', '$_POST[amount_sought]', '0')";
     $result = pg_query($db, $query);                  
     if (!$result) {
-        echo "Project submission failed, please try again";
 		$_SESSION['submit_state'] = "failed";
     }
     else {
-        echo "Project successfully submitted";
 		$_SESSION['submit_state'] = "success";
+		
+		if (!empty($_POST[keyword])) {
+			foreach($_POST[keyword] as $selected) {
+				$query2 = "INSERT INTO contains VALUES ('$projectid', '$selected')";
+				$result2 = pg_query($db, $query2);
+			}
+		}
 	}
 	header("Location: ../addProject.php");
 ?>

@@ -56,10 +56,32 @@
                 <div class="form-group row">
 					<div class="col-lg-1"></div>
                     <label for="keywords" class="col-lg-2 col-form-label">Keywords</label>
-                    <div class="col-lg-8">
-                        <input name="keywords" class="form-control" placeholder="Keywords"/>
+                    <div class="col-lg-4">
+                        <input name="keyword[]" class="form-check-input" type="checkbox" value="Arts"/>
+                        <label class="form-check-label">Arts</label>
+                        <br>
+                        <input name="keyword[]" class="form-check-input" type="checkbox" value="Tech"/>
+                        <label class="form-check-label">Tech</label>
+                        <br>
+                        <input name="keyword[]" class="form-check-input" type="checkbox" value="Illustration"/>
+                        <label class="form-check-label">Illustration</label>
+                        <br>
+                        <input name="keyword[]" class="form-check-input" type="checkbox" value="Games"/>
+                        <label class="form-check-label">Games</label>
+                        <br>
+                        <input name="keyword[]" class="form-check-input" type="checkbox" value="Food"/>
+                        <label class="form-check-label">Food</label>
+                        <br>
+                        <input name="keyword[]" class="form-check-input" type="checkbox" value="Music"/>
+                        <label class="form-check-label">Music</label>
+                        <br>
+                        <input name="keyword[]" class="form-check-input" type="checkbox" value="Publishing"/>
+                        <label class="form-check-label">Publishing</label>
+                        <br>
+                        <input name="keyword[]" class="form-check-input" type="checkbox" value="Film"/>
+                        <label class="form-check-label">Film</label>
                     </div>
-                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5"></div>
                 </div>
                 <div class="form-group text-center">
                     <button class="btn btn-primary" type="submit" name="project_submit">Confirm Project Submission</button>
