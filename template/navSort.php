@@ -1,6 +1,6 @@
 <?php 
     //initialising associative array
-    $project_columns = array("advertiser" => "Advertiser", "projectid" => "Project ID", "title" => "Title", "description" => "Description", "start_date" => "Start Date", "duration" => "Duration", "keywords" => "Keywords", "funding_sought" => "Funding Sought", "amount_funded" => "Amount Funded");
+    $project_columns = array("advertiser" => "Advertiser", "projectid" => "Project ID", "title" => "Title", "description" => "Description", "start_date" => "Start Date", "duration" => "Duration", "funding_sought" => "Funding Sought", "amount_funded" => "Amount Funded");
     
     $curFileName = basename($_SERVER['PHP_SELF']);
 ?>

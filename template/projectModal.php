@@ -11,7 +11,6 @@
             modal.find('.modal-footer #deletebutton').val(button.data('projectid'));
             modal.find('.modal-body #projectid').val(button.data('projectid'));
 			modal.find('.modal-body #amount_sought').val(button.data('funding'));
-			modal.find('.modal-body #keywords').val(button.data('keywords'));
         });
         
     // 	console.log($(this).data());
@@ -45,7 +44,6 @@
                         </div>
                         <input name="projectid" type="hidden" id="projectid" value="" required />
                         <input name="amount_sought" type="hidden" id="amount_sought" value="" required />
-                        <input name="keywords" type="hidden" id="keywords" value="" required />
 						<div class="col-lg-2">
                             <button class="btn btn-primary" type="submit">Fund!</button>
                         </div>
@@ -88,7 +86,6 @@
 			$('#edit_amount_sought').val($('#amount_sought').val());
 			$('#edit_start_date').val($('#startdate').val());	
 			$('#edit_duration').val($('#duration').val());
-			$('#edit_keywords').val($('#keywords').val());
 			
 			$('#editModal').modal('show');
 		});	
