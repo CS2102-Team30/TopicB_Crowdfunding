@@ -25,4 +25,4 @@
 # Setting up Test Data
 1. cd into .\SQL
 2. Run the following in order
-3. Run cleanDatabase.sql, schema.sql, users.sql, projects.sql, invest.sql, updateProjectFunding.sql
+3. Run cleanDatabase.sql, schema.sql, categories.sql, users.sql, projects.sql, invest.sql, updateProjectFunding.sql
