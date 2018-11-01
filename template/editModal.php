@@ -62,31 +62,31 @@
                     </div>
                 </div>
                 <div class="form-group row">
-					<label for="edit_keywords" class="col-lg-4 col-form-label">Keywords:</label>
+					<label for="edit_categories" class="col-lg-4 col-form-label">Categories:</label>
                     <div class="col-lg-4">
-                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Arts"/>
+                        <input name="edit_categories[]" class="form-check-input" type="checkbox" value="Arts"/>
                         <label class="form-check-label">Arts</label>
                         <br>
-                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Tech"/>
+                        <input name="edit_categories[]" class="form-check-input" type="checkbox" value="Tech"/>
                         <label class="form-check-label">Tech</label>
                         <br>
-                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Illustration"/>
+                        <input name="edit_categories[]" class="form-check-input" type="checkbox" value="Illustration"/>
                         <label class="form-check-label">Illustration</label>
                         <br>
-                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Games"/>
+                        <input name="edit_categories[]" class="form-check-input" type="checkbox" value="Games"/>
                         <label class="form-check-label">Games</label>
                     </div>
 					<div class="col-lg-4">
-					    <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Food"/>
+					    <input name="edit_categories[]" class="form-check-input" type="checkbox" value="Food"/>
                         <label class="form-check-label">Food</label>
                         <br>
-                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Music"/>
+                        <input name="edit_categories[]" class="form-check-input" type="checkbox" value="Music"/>
                         <label class="form-check-label">Music</label>
                         <br>
-                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Publishing"/>
+                        <input name="edit_categories[]" class="form-check-input" type="checkbox" value="Publishing"/>
                         <label class="form-check-label">Publishing</label>
                         <br>
-                        <input name="edit_keywords[]" class="form-check-input" type="checkbox" value="Film"/>
+                        <input name="edit_categories[]" class="form-check-input" type="checkbox" value="Film"/>
                         <label class="form-check-label">Film</label>
 					</div>
                 </div>

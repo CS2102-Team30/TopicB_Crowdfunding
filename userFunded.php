@@ -62,7 +62,7 @@
                     $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded, p.funding_sought, p.description, p.projectid, i.amount 
                         FROM projects p, invest i
                         WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
-                        AND (UPPER(p.title) LIKE UPPER('%$search%')
+                        AND (UPPER(p.title) LIKE UPPER('%$search%'))
                         ORDER BY $sort $order
                         LIMIT 10 OFFSET 0";
                     

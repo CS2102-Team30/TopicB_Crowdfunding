@@ -14,9 +14,9 @@
     else {
 		$_SESSION['submit_state'] = "success";
 		
-		if (!empty($_POST[keyword])) {
-			foreach($_POST[keyword] as $selected) {
-				$query2 = "INSERT INTO contains VALUES ('$projectid', '$selected')";
+		if (!empty($_POST[category])) {
+			foreach($_POST[category] as $selected) {
+				$query2 = "INSERT INTO belongsTo VALUES ('$projectid', '$selected')";
 				$result2 = pg_query($db, $query2);
 			}
 		}

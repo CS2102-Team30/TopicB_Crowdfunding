@@ -10,12 +10,12 @@
 	if (!$result) {
 	}
 	else {
-		$query2 = "DELETE FROM contains WHERE projectid = '$_POST[edit_projectid]'";
+		$query2 = "DELETE FROM belongsTo WHERE projectid = '$_POST[edit_projectid]'";
 		$result2 = pg_query($db, $query2);
 		
-		if (!empty($_POST[edit_keywords])) {
-			foreach($_POST[edit_keywords] as $selected) {
-				$query2 = "INSERT INTO contains VALUES ('$_POST[edit_projectid]', '$selected')";
+		if (!empty($_POST[edit_categories])) {
+			foreach($_POST[edit_categories] as $selected) {
+				$query2 = "INSERT INTO belongsTo VALUES ('$_POST[edit_projectid]', '$selected')";
 				$result2 = pg_query($db, $query2);
 			}
 		}

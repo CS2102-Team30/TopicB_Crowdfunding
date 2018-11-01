@@ -17,13 +17,13 @@
 						echo "<p>" . "You are currently funding " . "$" . $row2['amount'] . " in this project" . "</p>";
 					}
 					
-					$query3 = "SELECT projectid, keyword FROM contains WHERE projectid = '$projectid'";
+					$query3 = "SELECT projectid, category FROM belongsTo WHERE projectid = '$projectid'";
 					$result3 = pg_query($db, $query3);
-					$allkeywords = "";
+					$allcategories = "";
 					while($row3 = pg_fetch_assoc($result3)) {
-						$allkeywords .= $row3['keyword'] . ",";
+						$allcategories .= $row3['category'] . ",";
 					}
-					$allkeywords = rtrim($allkeywords, ",");
+					$allcategories = rtrim($allcategories, ",");
 				?>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal" 
 				data-description="<?php echo $row['description'];?>" data-title="<?php echo $row['title'];?>" data-startdate="<?php echo $row['start_date'];?>" data-duration="<?php echo $row['duration'];?>" 
@@ -32,7 +32,7 @@
 				</button>
 			</div>
 			<div class="card-footer">
-				<?php echo "<p>" . "Keywords: " . $allkeywords; ?>
+				<?php echo "<p>" . "Categories: " . $allcategories; ?>
 			</div>
 		</div>
 		<br>
