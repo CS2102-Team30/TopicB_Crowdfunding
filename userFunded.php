@@ -45,7 +45,14 @@
 				}
 				else {
 					$search = $_GET['search_field'];
-				}
+                }
+                
+                if (!isset($_GET['category'])) {
+                    $category = 'Arts';
+                }
+                else {
+                    $category = $_GET['category'];
+                }
 				
                 //check if user even has funded projects
                 $query = "SELECT * FROM invest WHERE investor = '$_SESSION[userid]'";
@@ -71,6 +78,7 @@
 			?>
         
             <?php include("./template/projectSearch.php"); ?>
+            <?php include("./template/categoriesSort.php"); ?>
              <!-- Display information from Database in table form -->
             <?php include("./template/navSort.php"); ?>
             <div id="results">

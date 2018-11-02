@@ -46,7 +46,15 @@
 				}
 				else {
 					$search = $_GET['search_field'];
-				}
+                }
+                
+                if (!isset($_GET['category'])) {
+                    $category = 'Arts';
+                }
+                else {
+                    $category = $_GET['category'];
+                }
+
                 $query = "SELECT * 
 					FROM projects 
 					WHERE amount_funded >= funding_sought
@@ -59,6 +67,7 @@
 			?>
             
             <?php include("./template/projectSearch.php"); ?>
+            <?php include("./template/categoriesSort.php"); ?>
 			<?php include('./template/navSort.php'); ?>
             <div id="results">
                 <?php include('./template/projectTable.php'); ?>

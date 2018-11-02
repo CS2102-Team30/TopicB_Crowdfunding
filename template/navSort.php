@@ -12,16 +12,16 @@
     <div class="collapse navbar-collapse" id="navbarSort">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item <?php if($sort == "title") {?>active<?php }?>">
-                <a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=title<?php echo "&search_field=".$search; ?>"><?php echo $project_columns['title'];?></a>
+                <a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=title<?php echo "&search_field=".$search."&category=".$category; ?>"><?php echo $project_columns['title'];?></a>
             </li>
            <li class="nav-item <?php if($sort == "advertiser") {?>active<?php }?>">
-                <a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=advertiser<?php echo "&search_field=".$search; ?>"><?php echo $project_columns['advertiser'];?></a>
+                <a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=advertiser<?php echo "&search_field=".$search."&category=".$category; ?>"><?php echo $project_columns['advertiser'];?></a>
             </li>
             <li class="nav-item <?php if($sort == "funding_sought") {?>active<?php }?>">
-                <a  class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=funding_sought<?php echo "&search_field=".$search; ?>"><?php echo $project_columns['funding_sought'];?></a>
+                <a  class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=funding_sought<?php echo "&search_field=".$search."&category=".$category; ?>"><?php echo $project_columns['funding_sought'];?></a>
             </li>
             <li class="nav-item <?php if($sort == "amount_funded") {?>active<?php }?>">
-				<a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=amount_funded<?php echo "&search_field=".$search; ?>"><?php echo $project_columns['amount_funded'];?></a>
+				<a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=amount_funded<?php echo "&search_field=".$search."&category=".$category; ?>"><?php echo $project_columns['amount_funded'];?></a>
             </li>
         </ul>
         <ul class="navbar-nav">
