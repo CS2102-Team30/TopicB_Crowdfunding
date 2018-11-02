@@ -41,20 +41,21 @@
             WHERE advertiser = '$_SESSION[userid]'
             AND (UPPER(title) LIKE UPPER('%$search%')
             ORDER BY $sort $order
-            LIMIT 10 OFFSET 0";
+            LIMIT 10 OFFSET $counter";
     } else if($page == 'funded.php') {
         $query = "SELECT * 
             FROM projects 
             WHERE amount_funded >= funding_sought
             AND (UPPER(title) LIKE UPPER('%$search%')
-            ORDER BY $sort $order";
+            ORDER BY $sort $order
+			LIMIT 10 OFFSET $counter";
     } else if($page == "userFunded.php") {
         $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded,  p.funding_sought, p.description, p.projectid, i.amount 
             FROM projects p, invest i
             WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
             AND (UPPER(p.title) LIKE UPPER('%$search%')
             ORDER BY $sort $order
-            LIMIT 10 OFFSET 0";
+            LIMIT 10 OFFSET $counter";
     }
     
     $result = pg_query($db, $query);

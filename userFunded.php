@@ -71,7 +71,7 @@
                         WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
                         AND (UPPER(p.title) LIKE UPPER('%$search%'))
                         ORDER BY $sort $order
-                        LIMIT 10 OFFSET 0";
+                        LIMIT 10";
                     
                     $result = pg_query($db, $query);
                 }

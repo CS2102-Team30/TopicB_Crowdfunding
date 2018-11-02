@@ -71,7 +71,7 @@
                         WHERE advertiser = '$_SESSION[userid]'
                         AND UPPER(title) LIKE UPPER('%$search%')
                         ORDER BY $sort $order
-                        LIMIT 10 OFFSET 0";
+                        LIMIT 10";
                     $result = pg_query($db, $query);
                 }
 			?>
