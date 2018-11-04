@@ -48,7 +48,7 @@
                 }
                 
                 if (!isset($_GET['category'])) {
-                    $category = 'Arts';
+                    $category = 'All';
                 }
                 else {
                     $category = $_GET['category'];
@@ -66,12 +66,24 @@
                 }
 
                 if(!$fundedNothing) {
-                    $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded, p.funding_sought, p.description, p.projectid, i.amount 
-                        FROM projects p, invest i
-                        WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
-                        AND (UPPER(p.title) LIKE UPPER('%$search%'))
-                        ORDER BY $sort $order
-                        LIMIT 10";
+                    if ($category == 'All') {
+                        $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded, p.funding_sought, p.description, p.projectid, i.amount 
+                            FROM projects p, invest i
+                            WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
+                            AND (UPPER(p.title) LIKE UPPER('%$search%'))
+                            ORDER BY $sort $order
+                            LIMIT 10";
+                    }
+                    else {
+                        $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded, p.funding_sought, p.description, p.projectid, i.amount 
+                            FROM projects p, invest i, belongsTo b
+                            WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
+                            AND (UPPER(p.title) LIKE UPPER('%$search%'))
+                            AND p.projectid = b.projectid
+                            AND b.category = '$category'
+                            ORDER BY $sort $order
+                            LIMIT 10";
+                    }
                     
                     $result = pg_query($db, $query);
                 }

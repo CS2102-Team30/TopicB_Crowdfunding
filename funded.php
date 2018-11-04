@@ -49,19 +49,30 @@
                 }
                 
                 if (!isset($_GET['category'])) {
-                    $category = 'Arts';
+                    $category = 'All';
                 }
                 else {
                     $category = $_GET['category'];
                 }
 
-                $query = "SELECT * 
-					FROM projects 
-					WHERE amount_funded >= funding_sought
-                    AND (UPPER(title) LIKE UPPER('%$search%'))
-					ORDER BY $sort $order
-                    LIMIT 10";
-                    
+                if ($category == 'All') {
+                    $query = "SELECT *
+                        FROM projects
+                        WHERE amount_funded >= funding_sought
+                        AND (UPPER(title) LIKE UPPER('%$search%'))
+                        ORDER BY $sort $order
+                        LIMIT 10";
+                }
+                else {
+                    $query = "SELECT *
+                        FROM projects p, belongsTo b
+                        WHERE p.amount_funded >= p.funding_sought
+                        AND (UPPER(p.title) LIKE UPPER('%$search%'))
+                        AND p.projectid = b.projectid
+                        AND b.category = '$category' 
+                        ORDER BY $sort $order
+                        LIMIT 10";
+                }
                     
 				$result = pg_query($db, $query);
 			?>

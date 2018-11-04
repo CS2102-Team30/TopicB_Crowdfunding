@@ -10,6 +10,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSort">
         <ul class="navbar-nav mr-auto">
+             <li class="nav-item <?php if($category == "All") {?>active<?php }?>">
+                <a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=<?php echo $sort."&search_field=".$search; ?>&category=All"><?php echo "All categories";?></a>
+            </li>
             <li class="nav-item <?php if($category == "Arts") {?>active<?php }?>">
                 <a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=<?php echo $sort."&search_field=".$search; ?>&category=Arts"><?php echo "Arts";?></a>
             </li>
