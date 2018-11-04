@@ -11,7 +11,7 @@ CREATE TABLE categories (
 CREATE TABLE projects (
 	advertiser VARCHAR(30) REFERENCES users(userid) ON DELETE CASCADE,
 	projectid CHAR(23) PRIMARY KEY,
-	title VARCHAR(50) NOT NULL,
+	title VARCHAR(60) NOT NULL,
 	description TEXT NOT NULL,
 	start_date DATE NOT NULL,
 	duration INT NOT NULL CHECK (duration > 0),
