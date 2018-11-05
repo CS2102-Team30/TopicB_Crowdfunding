@@ -25,4 +25,5 @@
 # Setting up Test Data
 1. cd into .\SQL
 2. Run the following in order
-3. Run cleanDatabase.sql, schema.sql, categories.sql, users.sql, projects.sql, belongsTo.sql, invest.sql, updateProjectFunding.sql,funding_trigger.sql
+3. Run cleanDatabase.sql, schema.sql, categories.sql, users.sql, projects.sql, belongsTo.sql, invest.sql, updateProjectFunding.sql,funding_trigger.sql.
+Alternatively, just run ultimate.sql
