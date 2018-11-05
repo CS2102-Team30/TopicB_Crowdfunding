@@ -1,3 +1,28 @@
+CREATE OR REPLACE FUNCTION add_fund_amount(_userid varchar(30),_projectid char(23), _amount integer)
+  RETURNS VOID AS
+$$
+BEGIN
+ PERFORM * FROM invest WHERE projectid = _projectid AND investor = _userid;	
+ IF(_amount < 0) THEN 
+	RETURN;
+ ELSIF (_amount = 0) THEN
+ 	IF (FOUND) THEN 
+		DELETE FROM invest WHERE projectid = _projectid AND investor = _userid;
+	END IF;
+ ELSE
+	IF (FOUND) THEN
+		UPDATE invest SET amount = _amount WHERE projectid = _projectid AND investor = _userid;
+	ELSE 
+		INSERT INTO invest VALUES(_userid,_projectid,_amount);
+	END IF;
+ END IF;
+ RETURN;
+END;
+$$ 
+LANGUAGE PLPGSQL;
+
+----------------------------------------------------------------------
+
 DROP TRIGGER IF EXISTS funding_sought_changed ON public.projects;
 DROP TRIGGER IF EXISTS invest_updated on public.invest;
 DROP TRIGGER IF EXISTS invest_deleted on public.invest;
