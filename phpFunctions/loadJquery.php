@@ -5,6 +5,7 @@
             var counter = $(this).data("counter");
             var order = "<?php echo $order ?>";
             var sort = "<?php echo $sort ?>";
+            var category= "<?php echo $category ?>";
             var page = "<?php echo basename($_SERVER['PHP_SELF']) ?>";
             <?php 
                 if($search != null) {
@@ -22,6 +23,7 @@
                       search_field:search_field,
                       sort:sort,
                       order:order,
+                      category:category,
                       page:page},
                 dataType:"text",
                 success:function(data) {
