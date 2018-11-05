@@ -15,8 +15,8 @@ CREATE TABLE projects (
 	description TEXT NOT NULL,
 	start_date DATE NOT NULL,
 	duration INT NOT NULL CHECK (duration > 0),
-	funding_sought INT NOT NULL CHECK (funding_sought > 0),
-	amount_funded INT NOT NULL CHECK (amount_funded >= 0)
+	funding_sought INT NOT NULL CHECK (funding_sought > 0 AND funding_sought >= amount_funded),
+	amount_funded INT NOT NULL CHECK (amount_funded >= 0 AND amount_funded <= funding_sought)
 );
 
 CREATE TABLE invest (
