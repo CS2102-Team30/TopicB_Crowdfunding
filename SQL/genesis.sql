@@ -1091,7 +1091,8 @@ END;
 $$ 
 LANGUAGE PLPGSQL;
 
-------------------------------------------------------------------------------------
+----------------------------------------------------------------------
+
 DROP TRIGGER IF EXISTS funding_sought_changed ON public.projects;
 DROP TRIGGER IF EXISTS invest_updated on public.invest;
 DROP TRIGGER IF EXISTS invest_deleted on public.invest;
@@ -1127,11 +1128,16 @@ CREATE OR REPLACE FUNCTION invest_updates()
 $$
  DECLARE
 	_amount_funded integer;
-	_funding_sought integer;
+	_funding_sought integer;	
 BEGIN 
  SELECT projects.amount_funded, projects.funding_sought INTO _amount_funded,_funding_sought FROM projects WHERE projects.projectid = NEW.projectid;
  IF (_funding_sought <= _amount_funded - OLD.amount + NEW.amount) THEN
  	NEW.amount := _funding_sought - _amount_funded + OLD.amount;
+	IF (OLD.amount = NEW.amount) THEN
+		RAISE NOTICE 'This project has already reached its funding goals. As such, further funding will not be included. Thank you for your support.';
+	ELSE
+		RAISE NOTICE 'Your funding is more than enough for this project to reach its funding goals. We will set your funding to the amount just enough to reach the goal. Thank you for your support.';
+	END IF;	
  END IF;
  UPDATE projects SET amount_funded = amount_funded - OLD.amount + NEW.amount WHERE projectid = NEW.projectid;
  RETURN NEW; 
@@ -1187,8 +1193,10 @@ BEGIN
  IF (_funding_sought <= _amount_funded + NEW.amount) THEN
 	NEW.amount := _funding_sought - _amount_funded;
 	IF(NEW.amount = 0) THEN
+		RAISE NOTICE 'This project has already reached its funding goals. Thank you for your support.';
 		RETURN NULL;
 	END IF;
+	RAISE NOTICE 'Your funding is more than enough for this project to reach its funding goals. We will set your funding to the amount just enough to reach the goal. Thank you for your support.';
  END IF;
  UPDATE projects SET amount_funded = amount_funded + NEW.amount WHERE projectid = NEW.projectid;
  RETURN NEW; 		
@@ -1202,8 +1210,9 @@ CREATE TRIGGER invest_inserted
   ON invest
   FOR EACH ROW
   EXECUTE PROCEDURE invest_inserts();  
-  
---------------------------------------
+
+--------------------------------------------------
+
   
 INSERT INTO invest VALUES ('kbeinisch57', 'J96JDFS0MB.A4QE87LRT0J5', 165);
 INSERT INTO invest VALUES ('bongeaw', 'V9GGAT86LR.DH4WJAQSMDWD', 136);

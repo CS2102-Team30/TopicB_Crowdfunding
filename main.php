@@ -93,9 +93,15 @@
             ?>
         </div>
     </body>
-    
     <!-- Modal -->
     <?php include("./template/projectModal.php"); ?>
 	<?php include("./template/editModal.php"); ?>
     <?php include("./phpFunctions/loadJquery.php"); ?>
+
+	<?php
+        if(isset($_SESSION['funding_notice'])) {
+			echo "<script> alert('$_SESSION[funding_notice]');</script>";
+			unset($_SESSION['funding_notice']);                  
+        }
+    ?>
 </html>
