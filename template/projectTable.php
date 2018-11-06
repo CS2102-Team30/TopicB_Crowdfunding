@@ -24,6 +24,12 @@
 						$allcategories .= $row3['category'] . ",";
 					}
 					$allcategories = rtrim($allcategories, ",");
+
+					$query4 = "SELECT COUNT(i.investor) AS investorCount
+						FROM projects p, invest i
+						WHERE p.projectid = '$projectid'
+						AND p.projectid = i.projectid";
+					$result4 = pg_fetch_row(pg_query($db, $query4));
 				?>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal" 
 				data-description="<?php echo $row['description'];?>" data-title="<?php echo $row['title'];?>" data-startdate="<?php echo $row['start_date'];?>" data-duration="<?php echo $row['duration'];?>" 
@@ -33,6 +39,7 @@
 			</div>
 			<div class="card-footer">
 				<?php echo "<p>" . "Categories: " . $allcategories; ?>
+				<?php echo "<p>" . "Currently funded by " . $result4[0] . " investors" ?>
 			</div>
 		</div>
 		<br>
