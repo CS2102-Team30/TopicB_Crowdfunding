@@ -15,13 +15,14 @@
     $resultCountFilm = 0;
 
     if (basename($_SERVER['PHP_SELF']) == 'main.php') {
+		$current_date = date("d/m/Y");
         $queryCountAll = "SELECT COUNT(*) AS count
             FROM projects
-            WHERE UPPER(title) LIKE UPPER('%$search%')";
+            WHERE UPPER(title) LIKE UPPER('%$search%') AND '$current_date' <= (start_date + INTERVAL '1 day' * duration)" ;
 
         $queryCount = "SELECT b.category AS category, COUNT(*) AS count
             FROM projects p, belongsTo b
-            WHERE UPPER(p.title) LIKE UPPER('%$search%')
+            WHERE UPPER(p.title) LIKE UPPER('%$search%') AND '$current_date' <= (start_date + INTERVAL '1 day' * duration)
             AND p.projectid = b.projectid
             GROUP BY b.category";
     }

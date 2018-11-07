@@ -23,7 +23,7 @@
             
 			<?php
                 $counter = 0;
-                
+                $current_date = date("d/m/Y");
 				// Retrieving projects from DB
                 // sort by amount_funded by default in descending order
                 if(!isset($_GET['order'])) {
@@ -57,14 +57,14 @@
                 if ($category == 'All') {
                     $query = "SELECT *
                         FROM projects
-                        WHERE UPPER(title) LIKE UPPER('%$search%')
+                        WHERE UPPER(title) LIKE UPPER('%$search%') AND '$current_date' <= (start_date + INTERVAL '1 day' * duration) 
                         ORDER BY $sort $order
                         LIMIT 10";
                 }
                 else {
                     $query = "SELECT *
                         FROM projects p, belongsTo b
-                        WHERE UPPER(p.title) LIKE UPPER('%$search%')
+                        WHERE UPPER(p.title) LIKE UPPER('%$search%') AND '$current_date' <= (start_date + INTERVAL '1 day' * duration)
                         AND p.projectid = b.projectid
                         AND b.category = '$category'
                         ORDER BY $sort $order
