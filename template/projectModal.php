@@ -11,6 +11,26 @@
             modal.find('.modal-footer #deletebutton').val(button.data('projectid'));
             modal.find('.modal-body #projectid').val(button.data('projectid'));
 			modal.find('.modal-body #amount_sought').val(button.data('funding'));
+            
+            //check if current date is greater than start date + duration
+            var now = new Date();
+            var startDateString = button.data('startdate');
+            var duration = button.data('duration');
+            
+            //splitting startDate and creating date object
+            var parts = startDateString.split('-');
+            var startDate = new Date(parts[0], parts[1] - 1, parts[2]);
+            
+            //add duration (in days) to startDate
+            var endDate = startDate.setTime(startDate.getTime() + duration * 86400000);
+            //converting back to date object
+            var endDate = new Date(endDate);
+            
+            if(now > endDate) {
+                $("#submit-funding").replaceWith("<b> Sorry! This project has expired! </b>");
+                $("#deletebutton").remove();
+                $("#editbutton").remove();
+            }
         });
         
     // 	console.log($(this).data());
