@@ -54,6 +54,8 @@
             <div class="modal-footer">
 				<?php if($_SERVER['PHP_SELF'] == '/userProjects.php' || $_SESSION['isadmin'] == "t") { ?>
 					<button id="deletebutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="delete">Delete</button>
+                <?php } ?>
+				<?php if($_SESSION['isadmin'] == "t") { ?>
 					<button id="editbutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="edit" data-dismiss="modal">Edit</button>
                 <?php } ?>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
