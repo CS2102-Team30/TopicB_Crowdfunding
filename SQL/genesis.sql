@@ -17,7 +17,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE categories (
-	category VARCHAR(30) PRIMARY KEY CHECK (category = 'Arts' OR category = 'Tech' OR category = 'Illustration' OR category = 'Games' OR category = 'Food' OR category = 'Music' OR category = 'Publishing' OR category = 'Film')
+	category VARCHAR(30) PRIMARY KEY
 );
 
 CREATE TABLE projects (
