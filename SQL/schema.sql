@@ -1,6 +1,6 @@
 CREATE TABLE users (
 	userid VARCHAR(30) PRIMARY KEY,
-	password VARCHAR(20) NOT NULL,
+	password VARCHAR(32) NOT NULL,
 	isAdmin BOOLEAN NOT NULL
 );
 

@@ -52,7 +52,8 @@
                 <?php
                     
                     if (isset($_POST['signup_submit'])) {
-                        $query = "INSERT INTO users VALUES ('$_POST[reg_userid]', '$_POST[reg_password]', false)";
+                        $hashedPassword = md5($_POST['reg_password']);
+                        $query = "INSERT INTO users VALUES ('$_POST[reg_userid]', '$hashedPassword', false)";
                         $result = pg_query($db, $query);
                         if (!$result) {
                             echo "Signup failed! Username taken!";
