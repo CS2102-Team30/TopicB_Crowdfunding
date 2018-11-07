@@ -1,4 +1,4 @@
-INSERT INTO users VALUES ('admin', '21232f297a57a5a743894a0e4a801fc3', TRUE);
+INSERT INTO users VALUES ('admin', '5f4dcc3b5aa765d61d8327deb882cf99', TRUE);
 INSERT INTO users VALUES ('lcharnick0', '4e55b6eb1ddc291e3a8172e94308314c', FALSE);
 INSERT INTO users VALUES ('kkembley1', 'a9e83e4968a8f3ea4ff16099511d43a7', FALSE);
 INSERT INTO users VALUES ('ldonnett2', '16e21f2df4cb48efeb5f9e9a7e46b02d', FALSE);
