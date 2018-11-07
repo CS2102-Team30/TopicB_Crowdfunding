@@ -40,7 +40,8 @@
                     include_once('./phpFunctions/connectDB.php');
                     
                     if (isset($_POST['changepwd_submit'])) {
-                        $query = "UPDATE users SET password = '". $_POST['change_password'] ."' WHERE userid = '" .$_SESSION['userid']."'";
+                        $hashedPassword = md5($_POST['change_password']);
+                        $query = "UPDATE users SET password = '". $hashedPassword ."' WHERE userid = '" .$_SESSION['userid']."'";
                         $result = pg_query($db, $query);
                         if (!$result) {
                             echo "Failed to change password.";
