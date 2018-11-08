@@ -9,7 +9,6 @@
     $projectid = $_POST['projectid'];
     $userid = $_SESSION['userid'];
     
-	pg_query($db, 'LISTEN fundChannel');
 	$query = "SELECT add_fund_amount('$userid', '$projectid', $add)";
 	$result = pg_query($db, $query);
 	$notice = pg_last_notice($db);
