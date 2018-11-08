@@ -30,7 +30,6 @@
             if(now > endDate) {
                 $("#submit-funding").replaceWith("<b> Sorry! This project has expired! </b>");
                 $("#deletebutton").remove();
-                $("#editbutton").remove();
             }
         });
         
