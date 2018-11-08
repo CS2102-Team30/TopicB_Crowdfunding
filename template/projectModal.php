@@ -23,13 +23,18 @@
             var startDate = new Date(parts[0], parts[1] - 1, parts[2]);
             
             //add duration (in days) to startDate
-            var endDate = startDate.setTime(startDate.getTime() + duration * 86400000);
+            var endDate = startDate.setTime(startDate.getTime() + (duration+1) * 86400000);
             //converting back to date object
             var endDate = new Date(endDate);
             
             if(now > endDate) {
-                $("#submit-funding").replaceWith("<b> Sorry! This project has expired! </b>");
-                $("#deletebutton").remove();
+                $("#submit-funding").hide();
+                $("#projectExpiredText").show();
+                $("#deletebutton").hide();
+            } else {
+                $("#submit-funding").show();
+                $("#projectExpiredText").hide();
+                $("#deletebutton").show();
             }
         });
         
@@ -70,6 +75,9 @@
                     </div>
 					<p>Note that the amount you enter will replace your previously submitted amount (if any). Enter $0 if you wish to remove your previously submitted amount.</p>
                 </form>
+                <div id="projectExpiredText">
+                    <b>This project has expired!</b>
+                </div>
             </div>
             <div class="modal-footer">
 				<?php if($_SERVER['PHP_SELF'] == '/userProjects.php' || $_SESSION['isadmin'] == "t") { ?>
