@@ -1,3 +1,4 @@
+<!-- Contains bootstrap scripts and other stuff in the <head></head> which we will re-use -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/styles.css">
 <!-- Bootstrap CSS -->

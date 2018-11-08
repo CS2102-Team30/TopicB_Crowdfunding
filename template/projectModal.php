@@ -1,3 +1,4 @@
+<!-- This is Modal where project details are shown in -->
 <script>
     $(document).ready(function () {
         $("#projectModal").on('show.bs.modal', function (event) {

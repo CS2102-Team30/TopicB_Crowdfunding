@@ -1,4 +1,6 @@
 <?php
+    /* This page is called during deletion of projects */
+    
 	session_start();
 	$query = "";
 	include_once('connectDB.php');

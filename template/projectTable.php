@@ -1,3 +1,4 @@
+<!-- This fetches the projects from database in the form of HTML Cards -->
 <?php
     while ($row = pg_fetch_assoc($result))  {
         $counter++;

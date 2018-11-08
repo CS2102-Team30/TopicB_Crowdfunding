@@ -1,4 +1,7 @@
 <?php
+    /* This page will be called from loadjQuery.php, which will fetch the next 10 projects *
+     * The projects will then be appended onto the current page via jQuery.                */
+     
     //check if logged out
     include_once("checkLogOut.php");
     //log in to db

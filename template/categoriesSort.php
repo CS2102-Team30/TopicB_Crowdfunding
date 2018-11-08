@@ -1,3 +1,5 @@
+<!-- Categories Sort Nav Bar -->
+<!-- Queries the database and returns projects according to categories -->
 <?php 
     //initialising associative array
     $project_columns = array("advertiser" => "Advertiser", "projectid" => "Project ID", "title" => "Title", "description" => "Description", "start_date" => "Start Date", "duration" => "Duration", "funding_sought" => "Funding Sought", "amount_funded" => "Amount Funded");

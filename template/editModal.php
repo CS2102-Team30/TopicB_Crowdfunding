@@ -1,3 +1,4 @@
+<!-- This pops up when the user clicks on the edit button from the projects Modal. Opens the editing form -->
 <script>
     $(document).ready(function () {
         $("#editModal").on('show.bs.modal', function (event) {

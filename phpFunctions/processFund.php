@@ -1,4 +1,6 @@
 <?php
+    /* This page is called when adding funding to a project */
+    
 	session_start();
     //log in to db
     include_once('connectDB.php');

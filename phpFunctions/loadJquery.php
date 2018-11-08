@@ -1,5 +1,5 @@
 <script>
-    //function that handles loading more entries
+    //function that handles loading more entries. Will call load.php to fetch next 10 entries from database
     $(document).ready(function() {
         $(document).on('click', '#btn_more', function() {
             var counter = $(this).data("counter");

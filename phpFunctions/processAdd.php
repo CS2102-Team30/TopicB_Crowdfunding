@@ -1,4 +1,6 @@
 <?php
+    /* This page is called during adding of projects */
+
 	session_start();
     //log in to db
     include_once('connectDB.php');
