@@ -85,10 +85,10 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-brand">Search for category: </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSort" aria-controls="navbarSort" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCategoriesSort" aria-controls="navbarCategoriesSort" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSort">
+    <div class="collapse navbar-collapse" id="navbarCategoriesSort">
         <ul class="navbar-nav mr-auto">
              <li class="nav-item <?php if($category == "All") {?>active<?php }?>">
                 <a class="nav-link" href="./<?php echo $curFileName;?>?order=<?php echo $order;?>&sort=<?php echo $sort."&search_field=".$search; ?>&category=All"><?php echo "All categories (".$resultCountAll['count'].")";?></a>
