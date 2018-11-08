@@ -111,25 +111,6 @@
 
     <!-- Modal -->
     <?php include("./template/projectModal.php"); ?>
+	<?php include("./template/editModal.php"); ?>
     <?php include("./phpFunctions/loadJquery.php"); ?>
-    
-	<script>
-		$("[data-modal-action=delete]").click(function (event) {
-			var button = $(event.target);
-			var id = button.val();
-			$("#projectModal").modal("hide");
-
-			var form = document.createElement("form");
-			form.setAttribute("method", "post");
-			form.setAttribute("action", "php_funcs/process_delete.php");
-
-			var hiddenField = document.createElement("input");
-			hiddenField.setAttribute("type", "hidden");
-			hiddenField.setAttribute("name", "deleteid");
-			hiddenField.setAttribute("value", id);
-			form.appendChild(hiddenField);
-			document.body.appendChild(form);
-			form.submit();	
-		});
-	</script>
 </html>

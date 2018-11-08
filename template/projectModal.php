@@ -26,15 +26,24 @@
             var endDate = startDate.setTime(startDate.getTime() + (duration+1) * 86400000);
             //converting back to date object
             var endDate = new Date(endDate);
-            
-            if(now > endDate) {
+            var currentAmt = button.data('funded');
+            var neededAmt = button.data('funding');
+            if(now > endDate || currentAmt >= neededAmt) {
                 $("#submit-funding").hide();
-                $("#projectExpiredText").show();
-                $("#deletebutton").hide();
+				$("#deletebutton").hide();
             } else {
                 $("#submit-funding").show();
+				$("#deletebutton").show();
+            }
+			if(now > endDate) {
+                $("#projectExpiredText").show();
+            } else {
                 $("#projectExpiredText").hide();
-                $("#deletebutton").show();
+            }
+			if(currentAmt >= neededAmt) {
+                $("#projectSucceededText").show();
+			} else {
+                $("#projectSucceededText").hide();
             }
         });
         
@@ -77,6 +86,9 @@
                 </form>
                 <div id="projectExpiredText">
                     <b>This project has expired!</b>
+                </div>
+				<div id="projectSucceededText">
+                    <b>This project has already been fully funded!</b>
                 </div>
             </div>
             <div class="modal-footer">
