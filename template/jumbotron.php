@@ -1,6 +1,7 @@
+<!-- Jumbotron header for the index page and register page -->
 <div class="jumbotron text-center">
-    <h1>Welcome to Crowdfunding thingy</h1>
-    <h5>Something something crowdfunding something</h5>
+    <h1>Welcome the Crowdfunder!</h1>
+    <h5>This is where your dreams come true</h5>
 	<br>
 	<h5>
 		<?php

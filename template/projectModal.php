@@ -1,3 +1,4 @@
+<!-- This is Modal where project details are shown in -->
 <script>
     $(document).ready(function () {
         $("#projectModal").on('show.bs.modal', function (event) {
@@ -11,7 +12,39 @@
             modal.find('.modal-footer #deletebutton').val(button.data('projectid'));
             modal.find('.modal-body #projectid').val(button.data('projectid'));
 			modal.find('.modal-body #amount_sought').val(button.data('funding'));
-			modal.find('.modal-body #keywords').val(button.data('keywords'));
+            
+            //check if current date is greater than start date + duration
+            var now = new Date();
+            var startDateString = button.data('startdate');
+            var duration = button.data('duration');
+            
+            //splitting startDate and creating date object
+            var parts = startDateString.split('-');
+            var startDate = new Date(parts[0], parts[1] - 1, parts[2]);
+            
+            //add duration (in days) to startDate
+            var endDate = startDate.setTime(startDate.getTime() + (duration+1) * 86400000);
+            //converting back to date object
+            var endDate = new Date(endDate);
+            var currentAmt = button.data('funded');
+            var neededAmt = button.data('funding');
+            if(now > endDate || currentAmt >= neededAmt) {
+                $("#submit-funding").hide();
+				$("#deletebutton").hide();
+            } else {
+                $("#submit-funding").show();
+				$("#deletebutton").show();
+            }
+			if(now > endDate) {
+                $("#projectExpiredText").show();
+            } else {
+                $("#projectExpiredText").hide();
+            }
+			if(currentAmt >= neededAmt) {
+                $("#projectSucceededText").show();
+			} else {
+                $("#projectSucceededText").hide();
+            }
         });
         
     // 	console.log($(this).data());
@@ -45,17 +78,24 @@
                         </div>
                         <input name="projectid" type="hidden" id="projectid" value="" required />
                         <input name="amount_sought" type="hidden" id="amount_sought" value="" required />
-                        <input name="keywords" type="hidden" id="keywords" value="" required />
 						<div class="col-lg-2">
                             <button class="btn btn-primary" type="submit">Fund!</button>
                         </div>
                     </div>
 					<p>Note that the amount you enter will replace your previously submitted amount (if any). Enter $0 if you wish to remove your previously submitted amount.</p>
                 </form>
+                <div id="projectExpiredText">
+                    <b>This project has expired!</b>
+                </div>
+				<div id="projectSucceededText">
+                    <b>This project has already been fully funded!</b>
+                </div>
             </div>
             <div class="modal-footer">
 				<?php if($_SERVER['PHP_SELF'] == '/userProjects.php' || $_SESSION['isadmin'] == "t") { ?>
 					<button id="deletebutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="delete">Delete</button>
+                <?php } ?>
+				<?php if($_SESSION['isadmin'] == "t") { ?>
 					<button id="editbutton" type="button" class="btn btn-secondary mr-auto" data-modal-action="edit" data-dismiss="modal">Edit</button>
                 <?php } ?>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -88,7 +128,6 @@
 			$('#edit_amount_sought').val($('#amount_sought').val());
 			$('#edit_start_date').val($('#startdate').val());	
 			$('#edit_duration').val($('#duration').val());
-			$('#edit_keywords').val($('#keywords').val());
 			
 			$('#editModal').modal('show');
 		});	

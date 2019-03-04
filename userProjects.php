@@ -45,7 +45,14 @@
 				}
 				else {
 					$search = $_GET['search_field'];
-				}
+                }
+                
+                if (!isset($_GET['category'])) {
+                    $category = 'All';
+                }
+                else {
+                    $category = $_GET['category'];
+                }
 				
                 //check if user even has projects advertised
                 $query = "SELECT * FROM projects WHERE advertiser = '$_SESSION[userid]'";
@@ -59,18 +66,30 @@
                 }
                 
                 if(!$advertisedNothing) {
-                    $query = "SELECT * 
-                        FROM projects
-                        WHERE advertiser = '$_SESSION[userid]'
-                        AND (UPPER(title) LIKE UPPER('%$search%')
-                        OR UPPER(keywords) LIKE UPPER('%$search%')) 
-                        ORDER BY $sort $order
-                        LIMIT 10 OFFSET 0";
+                    if ($category == 'All') {
+                        $query = "SELECT * 
+                            FROM projects
+                            WHERE advertiser = '$_SESSION[userid]'
+                            AND UPPER(title) LIKE UPPER('%$search%')
+                            ORDER BY $sort $order
+                            LIMIT 10";
+                    }
+                    else {
+                        $query = "SELECT * 
+                            FROM projects p, belongsTo b
+                            WHERE p.advertiser = '$_SESSION[userid]'
+                            AND UPPER(p.title) LIKE UPPER('%$search%')
+                            AND p.projectid = b.projectid
+                            AND b.category = '$category'
+                            ORDER BY $sort $order
+                            LIMIT 10";
+                    }
                     $result = pg_query($db, $query);
                 }
 			?>
         
             <?php include("./template/projectSearch.php"); ?>
+            <?php include("./template/categoriesSort.php"); ?>
              <!-- Display information from Database in table form -->
             <?php include("./template/navSort.php"); ?>
             <div id="results">

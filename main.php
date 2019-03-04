@@ -23,8 +23,7 @@
             
 			<?php
                 $counter = 0;
-                
-				// Retrieving projects from DB
+                // Retrieving projects from DB
                 // sort by amount_funded by default in descending order
                 if(!isset($_GET['order'])) {
                     $order = "desc";
@@ -45,18 +44,41 @@
 				}
 				else {
 					$search = $_GET['search_field'];
-				}
-				
-                $query = "SELECT * 
-					FROM projects 
-					WHERE UPPER(title) LIKE UPPER('%$search%')
-					OR UPPER(keywords) LIKE UPPER('%$search%') 
-					ORDER BY $sort $order
-                    LIMIT 10 OFFSET 0";
-				$result = pg_query($db, $query);
+                }
+                
+                if (!isset($_GET['category'])) {
+                    $category = 'All';
+                }
+                else {
+                    $category = $_GET['category'];
+                }
+                
+                if ($category == 'All') {
+                    $query = "SELECT *
+                        FROM projects
+                        WHERE UPPER(title) LIKE UPPER('%$search%') 
+						AND amount_funded < funding_sought
+						AND CURRENT_DATE <= (start_date + INTERVAL '1 day' * duration) 
+                        ORDER BY $sort $order
+                        LIMIT 10";
+                }
+                else {
+                    $query = "SELECT *
+                        FROM projects p, belongsTo b
+                        WHERE UPPER(p.title) LIKE UPPER('%$search%') 
+						AND amount_funded < funding_sought
+						AND CURRENT_DATE <= (start_date + INTERVAL '1 day' * duration)
+                        AND p.projectid = b.projectid
+                        AND b.category = '$category'
+                        ORDER BY $sort $order
+                        LIMIT 10";
+                }
+                
+                $result = pg_query($db, $query);
 			?>
             
             <?php include("./template/projectSearch.php"); ?>
+            <?php include("./template/categoriesSort.php"); ?>
 			<?php include ('./template/navSort.php'); ?>
             <div id="results">
                 <?php include('./template/projectTable.php'); ?>
@@ -74,9 +96,15 @@
             ?>
         </div>
     </body>
-    
     <!-- Modal -->
     <?php include("./template/projectModal.php"); ?>
 	<?php include("./template/editModal.php"); ?>
     <?php include("./phpFunctions/loadJquery.php"); ?>
+
+	<?php
+        if(isset($_SESSION['funding_notice'])) {
+			echo "<script> alert('$_SESSION[funding_notice]');</script>";
+			unset($_SESSION['funding_notice']);                  
+        }
+    ?>
 </html>

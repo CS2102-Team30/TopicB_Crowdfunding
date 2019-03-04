@@ -46,20 +46,39 @@
 				}
 				else {
 					$search = $_GET['search_field'];
-				}
-                $query = "SELECT * 
-					FROM projects 
-					WHERE amount_funded >= funding_sought
-                    AND (UPPER(title) LIKE UPPER('%$search%')
-                    OR UPPER(keywords) LIKE UPPER('%$search%'))
-					ORDER BY $sort $order
-                    LIMIT 10 OFFSET 0";
-                    
+                }
+                
+                if (!isset($_GET['category'])) {
+                    $category = 'All';
+                }
+                else {
+                    $category = $_GET['category'];
+                }
+
+                if ($category == 'All') {
+                    $query = "SELECT *
+                        FROM projects
+                        WHERE amount_funded >= funding_sought
+                        AND (UPPER(title) LIKE UPPER('%$search%'))
+                        ORDER BY $sort $order
+                        LIMIT 10";
+                }
+                else {
+                    $query = "SELECT *
+                        FROM projects p, belongsTo b
+                        WHERE p.amount_funded >= p.funding_sought
+                        AND (UPPER(p.title) LIKE UPPER('%$search%'))
+                        AND p.projectid = b.projectid
+                        AND b.category = '$category' 
+                        ORDER BY $sort $order
+                        LIMIT 10";
+                }
                     
 				$result = pg_query($db, $query);
 			?>
             
             <?php include("./template/projectSearch.php"); ?>
+            <?php include("./template/categoriesSort.php"); ?>
 			<?php include('./template/navSort.php'); ?>
             <div id="results">
                 <?php include('./template/projectTable.php'); ?>
@@ -79,25 +98,6 @@
     
     <!-- Modal -->
     <?php include("./template/projectModal.php"); ?>
+	<?php include("./template/editModal.php"); ?>
     <?php include("./phpFunctions/loadJquery.php"); ?>
-    
-	<script>
-		$("[data-modal-action=delete]").click(function (event) {
-			var button = $(event.target);
-			var id = button.val();
-			$("#projectModal").modal("hide");
-
-			var form = document.createElement("form");
-			form.setAttribute("method", "post");
-			form.setAttribute("action", "php_funcs/process_delete.php");
-
-			var hiddenField = document.createElement("input");
-			hiddenField.setAttribute("type", "hidden");
-			hiddenField.setAttribute("name", "deleteid");
-			hiddenField.setAttribute("value", id);
-			form.appendChild(hiddenField);
-			document.body.appendChild(form);
-			form.submit();	
-		});
-	</script>
 </html>

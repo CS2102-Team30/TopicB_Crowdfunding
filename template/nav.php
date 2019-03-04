@@ -1,3 +1,4 @@
+<!-- Nav bar for the main website once logged in -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     
     <?php

@@ -1,3 +1,4 @@
+<!-- This is the search form -->
 <form method="GET">
     <div class="form-group row">
         <div class="col-lg-1">

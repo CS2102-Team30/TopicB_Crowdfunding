@@ -1,4 +1,7 @@
 <?php
+    /* This page will be called from loadjQuery.php, which will fetch the next 10 projects *
+     * The projects will then be appended onto the current page via jQuery.                */
+     
     //check if logged out
     include_once("checkLogOut.php");
     //log in to db
@@ -8,6 +11,7 @@
     // sort by amount_funded by default in descending order
     $counter = $_POST['counter'];
     $page = $_POST['page'];
+    $category = $_POST['category'];
     if(!isset($_POST['order'])) {
         $order = "desc";
     }
@@ -30,35 +34,75 @@
     }
 
     if($page == 'main.php') {
-        $query = "SELECT * 
+        if ($category == 'All') { 
+            $query = "SELECT * 
             FROM projects 
             WHERE UPPER(title) LIKE UPPER('%$search%')
-            OR UPPER(keywords) LIKE UPPER('%$search%') 
             ORDER BY $sort $order
             LIMIT 10 OFFSET $counter";
+        } else {
+            $query = "SELECT *
+            FROM projects p, belongsTo b
+            WHERE UPPER(p.title) LIKE UPPER('%$search%')
+            AND p.projectid = b.projectid
+            AND b.category = '$category'
+            ORDER BY $sort $order
+            LIMIT 10 OFFSET $counter";
+        }
     } else if($page == 'userProjects.php') {
-        $query = "SELECT * 
+        if ($category == 'All') {
+            $query = "SELECT * 
             FROM projects
             WHERE advertiser = '$_SESSION[userid]'
             AND (UPPER(title) LIKE UPPER('%$search%')
-            OR UPPER(keywords) LIKE UPPER('%$search%')) 
             ORDER BY $sort $order
-            LIMIT 10 OFFSET 0";
+            LIMIT 10 OFFSET $counter";
+        } else {
+            $query = "SELECT * 
+            FROM projects p, belongsTo b
+            WHERE p.advertiser = '$_SESSION[userid]'
+            AND UPPER(p.title) LIKE UPPER('%$search%')
+            AND p.projectid = b.projectid
+            AND b.category = '$category'
+            ORDER BY $sort $order
+            LIMIT 10 OFFSET $counter";
+        }
     } else if($page == 'funded.php') {
-        $query = "SELECT * 
+        if ($category == 'All') {
+            $query = "SELECT * 
             FROM projects 
             WHERE amount_funded >= funding_sought
-            AND (UPPER(title) LIKE UPPER('%$search%')
-            OR UPPER(keywords) LIKE UPPER('%$search%'))
-            ORDER BY $sort $order";
+            AND (UPPER(title) LIKE UPPER('%$search%'))
+            ORDER BY $sort $order
+            LIMIT 10 OFFSET $counter";
+        } else {
+            $query = "SELECT *
+            FROM projects p, belongsTo b
+            WHERE p.amount_funded >= p.funding_sought
+            AND (UPPER(p.title) LIKE UPPER('%$search%'))
+            AND p.projectid = b.projectid
+            AND b.category = '$category' 
+            ORDER BY $sort $order
+            LIMIT 10 OFFSET $counter";
+        }
     } else if($page == "userFunded.php") {
-        $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded,  p.funding_sought, p.description, p.projectid, i.amount 
+        if ($category == 'All') {
+            $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded,  p.funding_sought, p.description, p.projectid, i.amount 
             FROM projects p, invest i
             WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
             AND (UPPER(p.title) LIKE UPPER('%$search%')
-            OR UPPER(p.keywords) LIKE UPPER('%$search%'))
             ORDER BY $sort $order
-            LIMIT 10 OFFSET 0";
+            LIMIT 10 OFFSET $counter";
+        } else {
+            $query = "SELECT p.title, p.advertiser, p.start_date, p.duration, p.amount_funded, p.funding_sought, p.description, p.projectid, i.amount 
+            FROM projects p, invest i, belongsTo b
+            WHERE i.investor = '$_SESSION[userid]' AND p.projectid = i.projectid
+            AND (UPPER(p.title) LIKE UPPER('%$search%'))
+            AND p.projectid = b.projectid
+            AND b.category = '$category'
+            ORDER BY $sort $order
+            LIMIT 10 OFFSET $counter";
+        }
     }
     
     $result = pg_query($db, $query);

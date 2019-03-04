@@ -58,7 +58,7 @@
                         }
                         else {
                             $row = pg_fetch_assoc($result);
-                            if ($_POST['password'] != $row['password']) {
+                            if (md5($_POST['password']) != $row['password']) {
                                 echo "Wrong password!";
                             }
                             else {
